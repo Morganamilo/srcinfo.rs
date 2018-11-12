@@ -1,0 +1,20 @@
+pkgbase = passcheck
+	pkgdesc = Passphrase strength evaluator
+	pkgver = 1.6
+	pkgrel = 1
+	url = https://github.com/maandree/passcheck
+	install = passcheck.install
+	arch = any
+	license = AGPL3
+	makedepends = make
+	makedepends = sed
+	makedepends = coreutils
+	makedepends = texinfo
+	makedepends = auto-auto-complete
+	depends = python3
+	depends = passcheck-data
+	source = https://github.com/maandree/passcheck/archive/1.6.tar.gz
+	sha256sums = d6a2cc59f0f2d499e2acfb9ad6041888a154a5c935f1d3a123b5f73c19917f47
+
+pkgname = passcheck
+

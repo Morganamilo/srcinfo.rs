@@ -1,0 +1,29 @@
+pkgbase = signal
+	pkgdesc = Signal Private Messenger for the Desktop
+	pkgver = 1.11.0
+	pkgrel = 1
+	url = https://github.com/signalapp/Signal-Desktop
+	arch = i686
+	arch = x86_64
+	license = GPL3
+	makedepends = python2
+	makedepends = npm
+	makedepends = yarn
+	makedepends = git
+	makedepends = nvm
+	depends = electron
+	provides = signal
+	conflicts = signal-desktop
+	conflicts = signal-desktop-beta
+	conflicts = signal-desktop-bin
+	source = signal-git-repo::git+https://github.com/signalapp/Signal-Desktop.git#tag=v1.11.0
+	source = signal.sh
+	source = signal.desktop
+	source = signal-tray.desktop
+	sha512sums = SKIP
+	sha512sums = 5cd854481c21720a18c3cf743a8dcccdcc4792151106889096c5b51d55740477084be313ec3fbbf1f5876e8aba29c2acdc23acb13a62d43e16ad5a6eb79c9dc6
+	sha512sums = a264bfc7a4a7aac747daa588a2acbf1eddfd201bc795f0fbc18460a9b25f4460f364124e227a527fec22631cd84bc9e190f9f4978069e9c119eb556b9ff2d327
+	sha512sums = ced228d19303abe951c55f7874004cb9e4cd062dbda48c7ea80b0a6fb9adf5716a37164c01c9921a91f00653b0737fed80e3c5e684b0f3bcec375c265d6d8e5c
+
+pkgname = signal
+

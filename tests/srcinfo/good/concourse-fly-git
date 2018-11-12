@@ -1,0 +1,15 @@
+pkgbase = concourse-fly-git
+	pkgdesc = Command line interface to the Concourse continuous integration tool
+	pkgver = 3.12.1.rc.8.r0.gbb37e22
+	pkgrel = 2
+	url = https://concourse-ci.org/fly.html
+	arch = x86_64
+	license = Apache
+	makedepends = go
+	provides = concourse-fly
+	conflicts = concourse-fly
+	source = git+https://github.com/concourse/concourse.git
+	sha512sums = SKIP
+
+pkgname = concourse-fly-git
+

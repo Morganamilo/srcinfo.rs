@@ -1,0 +1,14 @@
+pkgbase = irclog2html
+	pkgdesc = Converts IRC log files to HTML with pretty colours.
+	pkgver = 2.16.0
+	pkgrel = 1
+	url = http://mg.pov.lt/irclog2html/
+	arch = any
+	license = GPL2
+	makedepends = python-setuptools
+	depends = python
+	source = https://files.pythonhosted.org/packages/source/i/irclog2html/irclog2html-2.16.0.tar.gz
+	sha256sums = 7a3070be137150f10b9a1186400b4c4883bb66b8559c1d2c1e43a92e2f1ea3c9
+
+pkgname = irclog2html
+

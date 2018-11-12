@@ -1,0 +1,14 @@
+pkgbase = arch_override
+	arch = foo
+	pkgver = 1
+	pkgrel = 1
+	depends = a
+	depends_foo = b
+
+pkgname = bar
+	url = 127.0.0.1
+	license = GPL
+	groups = bar
+	groups = bar-devel
+	changelog = changelog.txt
+	depends = c

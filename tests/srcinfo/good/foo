@@ -1,0 +1,12 @@
+pkgbase = foo
+	arch = foo
+	pkgver = 1
+	pkgrel = 1
+
+pkgname = bar
+	url = 127.0.0.1
+	license = GPL
+	groups = bar
+	groups = bar-devel
+	changelog = changelog.txt
+	depends = 

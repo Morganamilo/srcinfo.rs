@@ -1,0 +1,7 @@
+pkgbase = foo
+	arch = foo
+	pkgver = 1
+	pkgrel = 1
+	depends_bar = foo
+
+pkgname = foo

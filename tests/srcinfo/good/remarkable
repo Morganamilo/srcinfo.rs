@@ -1,0 +1,30 @@
+pkgbase = remarkable
+	pkgdesc = A free fully featured markdown editor for Linux.
+	pkgver = 1.87
+	pkgrel = 4
+	url = http://remarkableapp.github.io
+	install = remarkable.install
+	arch = any
+	license = MIT
+	makedepends = python
+	depends = python
+	depends = python-cairo
+	depends = python-gobject
+	depends = python-markdown
+	depends = python-beautifulsoup4
+	depends = python-lxml
+	depends = webkit2gtk
+	depends = wkhtmltopdf
+	depends = gtksourceview3
+	optdepends = python-lxml: export to HTML format support
+	optdepends = python-gtkspellcheck: Spellcheck (might cause problems)
+	replaces = remarkable-webkit2gtk
+	source = https://github.com/jamiemcg/Remarkable/archive/v1.87.tar.gz
+	source = stable.patch::https://github.com/jamiemcg/Remarkable/compare/v1.87...mbloms:stable.patch
+	source = remarkable.install
+	sha1sums = a492dc5d0a276f36846a99287ae93c02e22a5cd8
+	sha1sums = c91182e1521927e02328eb407a4e4f1ad910d16d
+	sha1sums = bdbfb750df9e5fb3022f47a46a80555259628cd1
+
+pkgname = remarkable
+

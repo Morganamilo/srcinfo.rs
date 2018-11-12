@@ -1,0 +1,29 @@
+pkgbase = freedoom-git
+	pkgdesc = Free game data files for Doom gaming engines
+	pkgver = 0.11.r275.gbf93839e
+	pkgrel = 1
+	epoch = 1
+	url = http://freedoom.github.io/
+	arch = any
+	license = BSD
+	makedepends = git
+	makedepends = python-pillow
+	makedepends = deutex-git
+	makedepends = python
+	makedepends = python-virtualenv
+	makedepends = asciidoc
+	source = git+https://github.com/freedoom/freedoom.git
+	sha256sums = SKIP
+
+pkgname = freedm-git
+	provides = freedoom
+	provides = freedm
+
+pkgname = freedoom1-git
+	provides = freedoom
+	provides = freedoom1
+
+pkgname = freedoom2-git
+	provides = freedoom
+	provides = freedoom2
+

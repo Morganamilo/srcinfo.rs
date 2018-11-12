@@ -1,0 +1,24 @@
+pkgbase = scangearmp-common
+	pkgdesc = Canon IJ Scanner Driver (Common package)
+	pkgver = 2.30
+	pkgrel = 1
+	url = http://support-asia.canon-asia.com/contents/ASIA/EN/0100588302.html
+	arch = i686
+	arch = x86_64
+	license = custom
+	makedepends = binutils
+	makedepends = tar
+	depends = gtk2>=2.4.0
+	depends = libpng12
+	depends = pangox-compat
+	depends = libusb-compat
+	optdepends = sane
+	optdepends = gimp>=2.0.0
+	options = emptydirs
+	source = http://gdlp01.c-wss.com/gds/3/0100005883/01/scangearmp-e400series-2.30-1-deb.tar.gz
+	source = LICENSE
+	sha256sums = e92149a22c55008b069b8748e79f042056dc09d60b6f1dea778baaec19af8b36
+	sha256sums = 1b890f509ae6795dfaea46e3a3bed6384d05bc4ef7ac047ec55e72fcb2101822
+
+pkgname = scangearmp-common
+

@@ -1,0 +1,17 @@
+pkgbase = cnijfilter-common-mg5400
+	pkgdesc = Canon IJ Printer Driver (Common package)
+	pkgver = 3.80
+	pkgrel = 1
+	url = http://support-sg.canon-asia.com/contents/SG/EN/0100467102.html
+	arch = i686
+	arch = x86_64
+	license = unknown
+	makedepends = rpmextract
+	depends = libcups
+	depends = popt
+	options = emptydirs
+	source = http://gdlp01.c-wss.com/gds/1/0100004671/01/cnijfilter-mg5400series-3.80-1-rpm.tar.gz
+	md5sums = e76ff321213bca10ae33aef9f162c301
+
+pkgname = cnijfilter-common-mg5400
+

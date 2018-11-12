@@ -1,0 +1,22 @@
+pkgbase = kde1-kdebase
+	pkgdesc = Historical copy of the base applications module of KDE 1, adapted to compile on modern systems (circa. 2016)
+	pkgver = 1.1.2
+	pkgrel = 5
+	url = https://github.com/KDE/kde1-kdebase
+	arch = i686
+	arch = x86_64
+	groups = kde1
+	license = GPL2
+	makedepends = cmake
+	depends = qt1
+	depends = kde1-kdelibs
+	depends = libjpeg
+	depends = libtiff
+	depends = perl
+	source = https://github.com/KDE/kde1-kdebase/archive/444ba45c273384ddbb4257027bdd60ec09fda13e.tar.gz
+	source = 0001-kcmikbd-also-needs-the-moc-files.patch
+	sha256sums = ff402fb14d1befb606c98a28a1bfe710a290dcf5ffa89849b61607eefc8ef4bf
+	sha256sums = dbb7fa69167c6f8f175793ae0be445450a89a941562a641f462ae518b89135a8
+
+pkgname = kde1-kdebase
+

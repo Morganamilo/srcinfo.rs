@@ -1,0 +1,11 @@
+pkgbase = empty_override
+	arch = foo
+	pkgver = 1
+	pkgrel = 1
+	depends = a
+	backup = b
+	install = c
+pkgname = foo
+	depends = 
+	backup = 
+	install = 

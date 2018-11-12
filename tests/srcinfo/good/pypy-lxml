@@ -1,0 +1,16 @@
+pkgbase = pypy-lxml
+	pkgdesc = PyPy binding for the libxml2 and libxslt libraries (EXPERIMENTAL!)
+	pkgver = 3.4.4
+	pkgrel = 1
+	url = http://lxml.de/
+	arch = i686
+	arch = x86_64
+	license = BSD
+	makedepends = pypy
+	makedepends = pypy3
+	makedepends = libxslt
+	source = http://pypi.python.org/packages/source/l/lxml/lxml-3.4.4.tar.gz
+	sha1sums = b210b84551d3ac1cadbcfae2fe553040fc7a61dd
+
+pkgname = pypy-lxml
+

@@ -1,0 +1,13 @@
+pkgbase = gnome-shell-extension-atom-dash-git
+	pkgdesc = A dash extension for gnome-shell as part of Ozon OS
+	pkgver = 25.29c3c06
+	pkgrel = 1
+	url = https://github.com/ozonos/atom-dash
+	arch = any
+	groups = gnome-shell-extensions
+	license = GPL3
+	source = git+https://github.com/ozonos/atom-dash.git
+	md5sums = SKIP
+
+pkgname = gnome-shell-extension-atom-dash-git
+

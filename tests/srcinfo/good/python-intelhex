@@ -1,0 +1,19 @@
+pkgbase = python-intelhex
+	pkgdesc = Python IntelHex library
+	pkgver = 2.1
+	pkgrel = 4
+	url = https://github.com/bialix/intelhex
+	arch = any
+	license = BSD
+	makedepends = python-setuptools
+	makedepends = python2-setuptools
+	source = intelhex-2.1.tar.gz::https://github.com/bialix/intelhex/archive/2.1.tar.gz
+	sha512sums = af5ee3cb7424d15cf259861dcedf6ca68ecfae0819cb9f5c3437a1c8ff8c2f03486dd9f12b93564a5e2f4b7bab4c055a44c6dbe2a86007165412336bd2a4554f
+
+pkgname = python-intelhex
+	depends = python
+	depends = python-setuptools
+
+pkgname = python2-intelhex
+	depends = python2
+	depends = python2-setuptools

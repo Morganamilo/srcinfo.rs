@@ -1,0 +1,17 @@
+pkgbase = python-habitica
+	pkgdesc = Commandline interface to Habitica.
+	pkgver = 0.0.16
+	pkgrel = 1
+	url = https://pypi.python.org/pypi/habitica
+	arch = any
+	license = MIT
+	makedepends = python-setuptools
+	depends = python-docopt
+	depends = python-requests
+	source = https://pypi.python.org/packages/2a/f3/4aa50300d1468e0fbfdb2b900927c6c786310ed2943771d1da6fa47fcebd/habitica-0.0.16.tar.gz
+	source = auth.cfg.sample
+	md5sums = 74186c1d3b8e0b99677a4cca865db443
+	md5sums = 73203917ea9a075cafaf287f9d707a15
+
+pkgname = python-habitica
+

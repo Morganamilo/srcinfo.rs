@@ -1,0 +1,35 @@
+pkgbase = tensorflow-computecpp
+	pkgdesc = Library for computation using data flow graphs for scalable machine learning (backend with ComputeCpp)
+	pkgver = ComputeCpp+0.6.0+31+g0367804e7e
+	pkgrel = 1
+	url = https://github.com/lukeiwanski/tensorflow
+	arch = x86_64
+	license = APACHE
+	makedepends = git
+	makedepends = opencl-icd-loader
+	makedepends = computecpp
+	makedepends = bazel
+	makedepends = python-numpy
+	makedepends = python-pip
+	makedepends = python-wheel
+	makedepends = python-setuptools
+	depends = opencl-icd-loader
+	depends = computecpp
+	options = !ccache
+	source = git+https://github.com/lukeiwanski/tensorflow#branch=dev/amd_gpu
+	source = 17508.patch
+	sha512sums = SKIP
+	sha512sums = cb2880767532275f55f91ab66b29687fceadcadb8e23608d1e59b35a2899239882367ac38465a5e635f17378286093da0ede115668e23d651776d962ddc35ea9
+
+pkgname = tensorflow-computecpp
+	provides = tensorflow
+	conflicts = tensorflow
+
+pkgname = python-tensorflow-computecpp
+	depends = python-numpy
+	depends = python-protobuf
+	depends = absl-py
+	optdepends = python-werkzeug: for using tensorboard
+	provides = python-tensorflow
+	conflicts = python-tensorflow
+

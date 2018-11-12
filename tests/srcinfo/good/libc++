@@ -1,0 +1,46 @@
+pkgbase = libc++
+	pkgver = 6.0.0
+	pkgrel = 1
+	url = https://libcxx.llvm.org/
+	arch = i686
+	arch = x86_64
+	license = MIT
+	license = custom:University of Illinois/NCSA Open Source License
+	makedepends = clang
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = python
+	makedepends = libunwind
+	depends = gcc-libs
+	noextract = llvm-6.0.0.src.tar.xz
+	noextract = llvm-6.0.0.src.tar.xz.sig
+	noextract = libcxx-6.0.0.src.tar.xz
+	noextract = libcxx-6.0.0.src.tar.xz.sig
+	noextract = libcxxabi-6.0.0.src.tar.xz
+	noextract = libcxxabi-6.0.0.src.tar.xz.sig
+	source = https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz
+	source = https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz.sig
+	source = https://releases.llvm.org/6.0.0/libcxx-6.0.0.src.tar.xz
+	source = https://releases.llvm.org/6.0.0/libcxx-6.0.0.src.tar.xz.sig
+	source = https://releases.llvm.org/6.0.0/libcxxabi-6.0.0.src.tar.xz
+	source = https://releases.llvm.org/6.0.0/libcxxabi-6.0.0.src.tar.xz.sig
+	validpgpkeys = 11E521D646982372EB577A1F8F0871F202119294
+	validpgpkeys = B6C8F98282B944E3B0D5C2530FC3042E345AD05D
+	sha512sums = a71fdd5ddc46f01327ad891cfcc198febdbe10769c57f14d8a4fb7d514621ee4080e1a641200d3353c16a16731d390270499ec6cd3dc98fadc570f3eb6b52b8c
+	sha512sums = SKIP
+	sha512sums = 3d93910f85a778f36c5f7a4429639008acba5713a2c8ac79a9de09463af6f9a388af45d39af23423a7223660701697ba067f3391f25d5a970973691dd88635e3
+	sha512sums = SKIP
+	sha512sums = c5e4cc05105770b42b20595fdbda5e1483be4582bc94335da1a15531ba43a0ecf30e1e0a252f62d4d0e6c79cda9d44ff5fdbe69a0a295b2431fd6de158410e2e
+	sha512sums = SKIP
+
+pkgname = libc++
+	pkgdesc = LLVM C++ standard library.
+	depends = libc++abi=6.0.0-1
+
+pkgname = libc++abi
+	pkgdesc = Low level support for the LLVM C++ standard library.
+
+pkgname = libc++experimental
+	pkgdesc = LLVM C++ experimental library.
+	depends = libc++=6.0.0-1
+

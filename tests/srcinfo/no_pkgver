@@ -1,0 +1,5 @@
+pkgbase = foo
+	arch = foo
+	pkgrel = 1
+
+pkgname = foo
