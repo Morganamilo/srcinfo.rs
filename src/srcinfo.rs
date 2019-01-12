@@ -15,19 +15,18 @@ pub struct ArchVec {
     pub vec: Vec<String>,
 }
 
-impl ArchVec {
-    #[cfg(test)]
-    pub(crate) fn from_arch<S: Into<String>>(arch: S) -> ArchVec {
-        ArchVec {
-            arch: Some(arch.into()),
-            vec: Vec::new(),
-        }
+impl<S: Into<String>> From<S> for ArchVec {
+    fn from(arch: S) -> ArchVec {
+        ArchVec { arch: Some(arch.into()), vec: Vec::new() }
     }
+}
 
-    pub(crate) fn from_vec<S: Into<String>>(arch: Option<S>, values: Vec<String>) -> ArchVec {
+impl ArchVec {
+    /// Create a new ArchVec from a given architecture and vec
+    pub fn new<S: Into<String>>(arch: Option<S>, vec: Vec<String>) -> ArchVec {
         ArchVec {
             arch: arch.map(|x| x.into()),
-            vec: values,
+            vec
         }
     }
 }

@@ -73,7 +73,7 @@ fn append_arch_strings(arch_strings: &mut Vec<ArchVec>, arch: Option<&str>, valu
     {
         vec.vec.push(value.to_string());
     } else {
-        arch_strings.push(ArchVec::from_vec(arch, vec![value.to_string()]));
+        arch_strings.push(ArchVec::new(arch, vec![value.to_string()]));
     }
 }
 
@@ -372,26 +372,26 @@ mod tests {
 
     #[test]
     fn test_append_arch_strings() {
-        let mut arch_strings = vec![ArchVec::from_arch("x86_64")];
+        let mut arch_strings = vec![ArchVec::from("x86_64")];
         append_arch_strings(&mut arch_strings, Some("arm"), "foo");
 
         assert_eq!(
             arch_strings,
             vec![
-                ArchVec::from_arch("x86_64"),
-                ArchVec::from_vec(Some("arm"), vec!["foo".to_string()]),
+                ArchVec::from("x86_64"),
+                ArchVec::new(Some("arm"), vec!["foo".to_string()]),
             ]
         );
 
-        let mut arch_strings = vec![ArchVec::from_arch("x86_64")];
+        let mut arch_strings = vec![ArchVec::from("x86_64")];
         append_arch_strings(&mut arch_strings, Some("x86_64"), "foo");
 
         assert_eq!(
             arch_strings,
-            vec![ArchVec::from_vec(Some("x86_64"), vec!["foo".to_string()]),]
+            vec![ArchVec::new(Some("x86_64"), vec!["foo".to_string()]),]
         );
 
-        let mut arch_strings = vec![ArchVec::from_arch("x86_64")];
+        let mut arch_strings = vec![ArchVec::from("x86_64")];
         append_arch_strings(&mut arch_strings, Some("x86_64"), "foo");
         append_arch_strings(&mut arch_strings, Some("x86_64"), "bar");
         append_arch_strings(&mut arch_strings, Some("x86_64"), "a");
@@ -399,7 +399,7 @@ mod tests {
 
         assert_eq!(
             arch_strings,
-            vec![ArchVec::from_vec(
+            vec![ArchVec::new(
                 Some("x86_64"),
                 vec![
                     "foo".to_string(),
@@ -410,7 +410,7 @@ mod tests {
             ),]
         );
 
-        let mut arch_strings = vec![ArchVec::from_arch("x86_64")];
+        let mut arch_strings = vec![ArchVec::from("x86_64")];
         append_arch_strings(&mut arch_strings, Some("x86_64"), "foo");
         append_arch_strings(&mut arch_strings, Some("arm"), "bar");
         append_arch_strings(&mut arch_strings, Some("x86_64"), "a");
@@ -419,8 +419,8 @@ mod tests {
         assert_eq!(
             arch_strings,
             vec![
-                ArchVec::from_vec(Some("x86_64"), vec!["foo".to_string(), "a".to_string()]),
-                ArchVec::from_vec(Some("arm"), vec!["bar".to_string(), "b".to_string()]),
+                ArchVec::new(Some("x86_64"), vec!["foo".to_string(), "a".to_string()]),
+                ArchVec::new(Some("arm"), vec!["bar".to_string(), "b".to_string()]),
             ]
         );
     }
