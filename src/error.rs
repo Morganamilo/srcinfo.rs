@@ -2,22 +2,45 @@ use std::error;
 use std::fmt;
 use std::io;
 
+/// Error Line holds a line of text and the line number the line is from.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ErrorLine {
+    /// The line number that the  error occurred at
     pub number: usize,
+    /// The full line containing the error
     pub line: String,
 }
 
+/// A list of possible errors that may occur when parsing a .SRCINFO.
+///
+/// Variants that hold a string hold the key that caused the error.
+///
+/// UndeclaredArch holds the key that caused the error and the architecture.
+///
+/// IoError holds the underlying IO::Error.
 #[derive(Debug)]
 pub enum ErrorKind {
+    /// pkgbase was specified more than once
     DuplicatePkgbase,
+    /// An architecture specific field was declared using an architecture
+    /// that has not been declared
     UndeclaredArch(String, String),
+    /// A key that must be used inside of the pkgbase section was used
+    /// inside of a pkgname section
     KeyAfterPkgname(String),
+    /// A key that must be used inside of a pkgname section was used
+    /// inside of the pkgbase section
     KeyBeforePkgbase(String),
+    /// A required field is missing
     MissingField(String),
+    /// A line has an empty key. E.g. " = foo"
     EmptyKey,
+    /// A line has an empty value where a value is required. E.g. "foo = "
     EmptyValue(String),
+    /// An architecture specific field was declared on a field that can not
+    /// be architecture specific
     NotArchSpecific(String),
+    /// An IoError occurred
     IoError(io::Error),
 }
 
@@ -26,7 +49,7 @@ impl fmt::Display for ErrorKind {
         match self {
             ErrorKind::DuplicatePkgbase => write!(fmt, "pkgbase already set"),
             ErrorKind::UndeclaredArch(k, a) => {
-                write!(fmt, "undeclared arch '{}' in key '{}'", a, k)
+                write!(fmt, "undeclared architecture '{}' in key '{}'", a, k)
             }
             ErrorKind::KeyAfterPkgname(k) => write!(fmt, "key '{}' used after pkgname", k),
             ErrorKind::KeyBeforePkgbase(k) => write!(fmt, "key '{}' used before pkgbase", k),
@@ -41,9 +64,12 @@ impl fmt::Display for ErrorKind {
     }
 }
 
+/// The error type for .SRCINFO parsing.
 #[derive(Debug)]
 pub struct Error {
+    /// The kind of Error that occurred
     pub kind: ErrorKind,
+    /// The line where the error occurred
     pub line: Option<ErrorLine>,
 }
 
@@ -71,6 +97,9 @@ impl From<ErrorKind> for Error {
 }
 
 impl Error {
+    /// Create a new Error from a given ErrorKind and ErrorLin.
+    ///
+    /// If the line is none then Errors can be created using the the From/Into traits.
     pub fn new<S>(kind: ErrorKind, line: S, number: usize) -> Error
     where
         S: Into<String>,

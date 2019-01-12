@@ -6,9 +6,12 @@ use std::str::FromStr;
 use crate::error::Error;
 use crate::parse::Parser;
 
+/// ArchVec represents a Vector of possibly architecture specific fields.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct ArchVec {
+    /// The architecture of the field, None is equivalent to 'any'
     pub arch: Option<String>,
+    /// The items the field contains
     pub vec: Vec<String>,
 }
 
@@ -29,6 +32,8 @@ impl ArchVec {
     }
 }
 
+/// The fields from a .SRCINFO that only apply to the pkgbase.
+#[allow(missing_docs)]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct PackageBase {
     pub pkgbase: String,
@@ -48,6 +53,8 @@ pub struct PackageBase {
     pub checkdepends: Vec<ArchVec>,
 }
 
+/// The fields from a .SRCINFO that are unique to each package.
+#[allow(missing_docs)]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Package {
     pub pkgname: String,
@@ -67,10 +74,14 @@ pub struct Package {
     pub changelog: Option<String>,
 }
 
+/// A complete representation of a .SRCINFO file.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Srcinfo {
+    /// Fields belonging to the pkgbase
     pub base: PackageBase,
+    /// Fields belonging to the pkgbase, may be overridden inside of each package
     pub package: Package,
+    /// The packages this .SRCINFO contains
     pub packages: Vec<Package>,
 }
 
@@ -83,16 +94,70 @@ impl FromStr for Srcinfo {
 }
 
 impl Srcinfo {
+    /// Parse a BufRead.
+    /// If you are parsing a string directly from_str() should be used instead.
+    ///
+    /// ```
+    /// // from_str() would be better here.
+    /// // parse_buf() is only used for the sake of example.
+    /// # use srcinfo::Error;
+    /// use srcinfo::Srcinfo;
+    ///
+    /// # fn test() -> Result<(), Error> {
+    /// let buf = "
+    /// pkgbase = example
+    /// pkgver = 1.5.0
+    /// pkgrel = 5
+    ///
+    /// pkgname = example".as_bytes();
+    ///
+    /// Srcinfo::parse_buf(buf)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn parse_buf<T: BufRead>(b: T) -> Result<Srcinfo, Error> {
         Parser::parse(b)
     }
 
+    /// Parse the file at a given path.
+    ///
+    /// ```
+    /// # use srcinfo::Error;
+    /// use srcinfo::Srcinfo;
+    ///
+    /// # fn test() -> Result<(), Error> {
+    /// let file = ".SRCINFO";
+    /// # let file = "tests/srcinfo/libc++";
+    /// let srcinfo = Srcinfo::parse_file(file)?;
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn parse_file<P: AsRef<Path>>(s: P) -> Result<Srcinfo, Error> {
         let file = File::open(s)?;
         let buf = BufReader::new(file);
         Parser::parse(buf)
     }
 
+    /// Builds a complete version string in the format: "epoch-pkgver-pkgrel".
+    ///
+    /// If the epoch is none then the epoch and connecting hyphen will be omitted.
+    ///
+    /// ```
+    /// # use srcinfo::Error;
+    /// use srcinfo::Srcinfo;
+    ///
+    /// # fn test() -> Result<(), Error> {
+    /// let srcinfo: Srcinfo = "
+    /// pkgbase = example
+    /// pkgver = 1.5.0
+    /// pkgrel = 5
+    ///
+    /// pkgname = example".parse()?;
+    ///
+    /// assert_eq!(srcinfo.version(), "1.5.0-5");
+    /// # Ok(())
+    /// # }
+    /// ```
     pub fn version(&self) -> String {
         let base = &self.base;
         if let Some(ref epoch) = base.epoch {
