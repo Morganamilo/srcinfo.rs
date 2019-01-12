@@ -1,11 +1,12 @@
 [package]
 name = "srcinfo"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["morganamilo <morganamilo@gmail.com>"]
 edition = "2018"
 description = "A libary for parsing .SRCINFO files"
 homepage = "http://github.com/Morganamilo/srcinfo.rs"
 repository = "http://github.com/Morganamilo/srcinfo.rs"
+documentation = "https://docs.rs/srcinfo"
 readme = "README.md"
 license = "GPL-3.0"
 keywords = ["srcinfo", "pkgbuild", "arch", "makepkg", "aur"]
