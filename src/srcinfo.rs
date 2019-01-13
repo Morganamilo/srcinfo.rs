@@ -17,7 +17,10 @@ pub struct ArchVec {
 
 impl<S: Into<String>> From<S> for ArchVec {
     fn from(arch: S) -> ArchVec {
-        ArchVec { arch: Some(arch.into()), vec: Vec::new() }
+        ArchVec {
+            arch: Some(arch.into()),
+            vec: Vec::new(),
+        }
     }
 }
 
@@ -26,7 +29,17 @@ impl ArchVec {
     pub fn new<S: Into<String>>(arch: Option<S>, vec: Vec<String>) -> ArchVec {
         ArchVec {
             arch: arch.map(|x| x.into()),
-            vec
+            vec,
+        }
+    }
+
+    /// Checks if a given ArchVec supports a given architecture.
+    ///
+    /// Returns true if self.arch is none or matches s.
+    pub fn supports<S: AsRef<str>>(&self, s: S) -> bool {
+        match self.arch {
+            None => true,
+            Some(ref arch) => arch == s.as_ref(),
         }
     }
 }
@@ -172,6 +185,37 @@ mod tests {
     use super::*;
     use crate::ErrorKind;
     use std::fs;
+
+    #[test]
+    fn test_supports() {
+        let av = ArchVec::from("x86_64".to_string());
+        assert!(av.supports("x86_64".to_string()));
+
+        let av = ArchVec::default();
+        assert!(av.supports("x86_64"));
+
+        let av = ArchVec::from("i686");
+        assert!(!av.supports("x86_64"));
+
+        let srcinfo: Srcinfo = include_str!("../tests/srcinfo/libc++").parse().unwrap();
+        let depends = srcinfo
+            .base
+            .makedepends
+            .into_iter()
+            .filter(|av| av.supports("x86_64"))
+            .flat_map(|av| av.vec)
+            .collect::<Vec<_>>();
+
+        let expected = vec![
+            "clang".to_string(),
+            "cmake".to_string(),
+            "ninja".to_string(),
+            "python".to_string(),
+            "libunwind".to_string(),
+        ];
+
+        assert_eq!(expected, depends);
+    }
 
     #[test]
     fn test_parsable() {
