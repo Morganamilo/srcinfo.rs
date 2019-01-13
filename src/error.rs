@@ -100,10 +100,7 @@ impl Error {
     /// Create a new Error from a given ErrorKind and ErrorLine.
     ///
     /// If the line is none then Errors can be created using the the From/Into traits.
-    pub fn new<S>(kind: ErrorKind, line: S, number: usize) -> Error
-    where
-        S: Into<String>,
-    {
+    pub fn new<S: Into<String>>(kind: ErrorKind, line: S, number: usize) -> Error {
         let line = line.into();
         let line = Some(ErrorLine { number, line });
         Error {
