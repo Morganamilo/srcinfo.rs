@@ -97,7 +97,7 @@ impl From<ErrorKind> for Error {
 }
 
 impl Error {
-    /// Create a new Error from a given ErrorKind and ErrorLin.
+    /// Create a new Error from a given ErrorKind and ErrorLine.
     ///
     /// If the line is none then Errors can be created using the the From/Into traits.
     pub fn new<S>(kind: ErrorKind, line: S, number: usize) -> Error
