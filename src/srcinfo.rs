@@ -92,9 +92,9 @@ pub struct Srcinfo {
     /// Fields belonging to the pkgbase
     pub base: PackageBase,
     /// Fields belonging to the pkgbase, may be overridden inside of each package
-    pub package: Package,
+    pub pkg: Package,
     /// The packages this .SRCINFO contains
-    pub packages: Vec<Package>,
+    pub pkgs: Vec<Package>,
 }
 
 impl FromStr for Srcinfo {
@@ -296,8 +296,8 @@ mod tests {
 
         let expected = Srcinfo {
             base: base.clone(),
-            package: package.clone(),
-            packages: vec![
+            pkg: package.clone(),
+            pkgs: vec![
                 Package {
                     pkgname: "libc++".to_string(),
                     pkgdesc: Some("LLVM C++ standard library.".to_string()),
@@ -407,8 +407,8 @@ mod tests {
 
         let expected = Srcinfo {
             base: base.clone(),
-            package: package.clone(),
-            packages: vec![
+            pkg: package.clone(),
+            pkgs: vec![
                 Package {
                     pkgname: "gdc-bin".to_string(),
                     pkgdesc: Some("Compiler for D programming language which uses gcc backend".to_string()),
@@ -480,11 +480,11 @@ mod tests {
                 pkgrel: "1".to_string(),
                 ..Default::default()
             },
-            package: Package {
+            pkg: Package {
                 arch: vec!["foo".to_string()],
                 ..Default::default()
             },
-            packages: vec![Package {
+            pkgs: vec![Package {
                 pkgname: "foo".to_string(),
                 ..Default::default()
             }],

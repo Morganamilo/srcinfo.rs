@@ -7,7 +7,7 @@ macro_rules! merge {
     ($slf:ident, $base:ident, $field:ident) => {
         if $base.$field.is_none() && !has_override(&$slf.empty_overrides, stringify!($field), None)
         {
-            $base.$field = $slf.srcinfo.package.$field.clone();
+            $base.$field = $slf.srcinfo.pkg.$field.clone();
         }
     };
 }
@@ -16,14 +16,14 @@ macro_rules! merge_vec {
     ($slf:ident, $base:ident, $field:ident) => {
         if $base.$field.is_empty() && !has_override(&$slf.empty_overrides, stringify!($field), None)
         {
-            $base.$field = $slf.srcinfo.package.$field.clone();
+            $base.$field = $slf.srcinfo.pkg.$field.clone();
         }
     };
 }
 
 macro_rules! merge_arch_string {
     ($slf:ident, $base:ident, $field:ident) => {
-        for arch_string in &$slf.srcinfo.package.$field {
+        for arch_string in &$slf.srcinfo.pkg.$field {
             if !has_override(
                 &$slf.empty_overrides,
                 stringify!($field),
@@ -129,7 +129,7 @@ impl Parser {
 
     #[allow(clippy::cyclomatic_complexity)]
     fn merge_current_package(&mut self) {
-        if let Some(package) = self.srcinfo.packages.last_mut() {
+        if let Some(package) = self.srcinfo.pkgs.last_mut() {
             merge!(self, package, pkgdesc);
             merge_vec!(self, package, arch);
             merge!(self, package, url);
@@ -152,7 +152,7 @@ impl Parser {
         Err(ErrorKind::MissingField(
             if self.srcinfo.base.pkgbase.is_empty() {
                 "pkgbase"
-            } else if self.srcinfo.packages.is_empty() {
+            } else if self.srcinfo.pkgs.is_empty() {
                 "pkgname"
             } else if self.srcinfo.base.pkgver.is_empty() {
                 "pkgver"
@@ -198,7 +198,7 @@ impl Parser {
 
         self.merge_current_package();
         self.has_pkg = true;
-        self.srcinfo.packages.push(pkg);
+        self.srcinfo.pkgs.push(pkg);
     }
 
     fn set_pkgbase(&mut self, value: Option<&str>) -> Result<(), ErrorKind> {
@@ -243,9 +243,9 @@ impl Parser {
         }
 
         if let Some(arch) = arch {
-            let base = &self.srcinfo.package;
-            let pkg = self.srcinfo.packages.last();
-            let pkg = pkg.unwrap_or(&self.srcinfo.package);
+            let base = &self.srcinfo.pkg;
+            let pkg = self.srcinfo.pkgs.last();
+            let pkg = pkg.unwrap_or(&self.srcinfo.pkg);
             if has_override(&self.empty_overrides, key, Some(arch)) {
                 self.check_arch(&base.arch, key_arch, arch)?;
             } else {
@@ -302,8 +302,8 @@ impl Parser {
     }
 
     fn match_pkg(&mut self, key: &str, value: &str) -> bool {
-        let pkg = self.srcinfo.packages.last_mut();
-        let pkg = pkg.unwrap_or(&mut self.srcinfo.package);
+        let pkg = self.srcinfo.pkgs.last_mut();
+        let pkg = pkg.unwrap_or(&mut self.srcinfo.pkg);
 
         match key {
             "pkgdesc" => pkg.pkgdesc = Some(value.to_string()),
@@ -322,8 +322,8 @@ impl Parser {
     }
 
     fn match_pkg_arch(&mut self, key: &str, arch: Option<&str>, value: &str) -> bool {
-        let pkg = self.srcinfo.packages.last_mut();
-        let pkg = pkg.unwrap_or(&mut self.srcinfo.package);
+        let pkg = self.srcinfo.pkgs.last_mut();
+        let pkg = pkg.unwrap_or(&mut self.srcinfo.pkg);
 
         match key {
             "depends" => append_arch_strings(&mut pkg.depends, arch, value),
