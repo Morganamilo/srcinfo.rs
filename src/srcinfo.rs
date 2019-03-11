@@ -178,6 +178,66 @@ impl Srcinfo {
             format!("{}-{}", base.pkgver, base.pkgrel)
         }
     }
+
+    /// Returns an Iterator over all the pkgnames the Package contains.
+    ///
+    /// ```
+    /// # use srcinfo::Error;
+    /// use srcinfo::Srcinfo;
+    ///
+    /// # fn test() -> Result<(), Error> {
+    /// let srcinfo: Srcinfo = "
+    /// pkgbase = example
+    /// pkgver = 1.5.0
+    /// pkgrel = 5
+    /// pkgdesc = 1
+    ///
+    /// pkgname = example
+    ///
+    /// pkgname = foo
+    /// pkgdesc = 2
+    ///
+    /// pkgname = bar
+    /// pkgdesc = 3".parse()?;
+    ///
+    /// let mut names = srcinfo.names().collect::<Vec<_>>();
+    /// assert_eq!(names, vec!["example", "foo", "bar"]);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn names(&self) -> impl Iterator<Item=&str> {
+        self.pkgs.iter().map(|p| p.pkgname.as_str())
+    }
+
+    /// Searches for a package with a given pkgname
+    ///
+    /// ```
+    /// # use srcinfo::Error;
+    /// use srcinfo::Srcinfo;
+    ///
+    /// # fn test() -> Result<(), Error> {
+    /// let srcinfo: Srcinfo = "
+    /// pkgbase = example
+    /// pkgver = 1.5.0
+    /// pkgrel = 5
+    /// pkgdesc = 1
+    ///
+    /// pkgname = example
+    ///
+    /// pkgname = foo
+    /// pkgdesc = 2
+    ///
+    /// pkgname = bar
+    /// pkgdesc = 3".parse()?;
+    ///
+    /// let pkg = srcinfo.pkg("foo").unwrap();
+    /// assert_eq!(pkg.pkgname, "foo");
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn pkg(&self, name: &str) -> Option<&Package> {
+        self.pkgs.iter().find(|p| p.pkgname == name)
+    }
 }
 
 #[cfg(test)]
