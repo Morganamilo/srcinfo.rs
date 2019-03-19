@@ -205,7 +205,7 @@ impl Srcinfo {
     /// # Ok(())
     /// # }
     /// ```
-    pub fn names(&self) -> impl Iterator<Item=&str> {
+    pub fn names(&self) -> impl Iterator<Item = &str> {
         self.pkgs.iter().map(|p| p.pkgname.as_str())
     }
 
@@ -235,8 +235,8 @@ impl Srcinfo {
     /// # Ok(())
     /// # }
     /// ```
-    pub fn pkg(&self, name: &str) -> Option<&Package> {
-        self.pkgs.iter().find(|p| p.pkgname == name)
+    pub fn pkg<S: AsRef<str>>(&self, name: S) -> Option<&Package> {
+        self.pkgs.iter().find(|p| p.pkgname == name.as_ref())
     }
 }
 

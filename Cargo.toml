@@ -1,6 +1,6 @@
 [package]
 name = "srcinfo"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["morganamilo <morganamilo@gmail.com>"]
 edition = "2018"
 description = "A libary for parsing .SRCINFO files"
