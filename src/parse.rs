@@ -293,6 +293,7 @@ impl Parser {
             "sha256sums" => append_arch_strings(&mut base.sha256sums, arch, value),
             "sha384sums" => append_arch_strings(&mut base.sha384sums, arch, value),
             "sha512sums" => append_arch_strings(&mut base.sha512sums, arch, value),
+            "b2sums" => append_arch_strings(&mut base.b2sums, arch, value),
             "makedepends" => append_arch_strings(&mut base.makedepends, arch, value),
             "checkdepends" => append_arch_strings(&mut base.checkdepends, arch, value),
             _ => return false,
