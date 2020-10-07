@@ -61,6 +61,7 @@ pub struct PackageBase {
     pub sha256sums: Vec<ArchVec>,
     pub sha384sums: Vec<ArchVec>,
     pub sha512sums: Vec<ArchVec>,
+    pub b2sums: Vec<ArchVec>,
     pub makedepends: Vec<ArchVec>,
     pub checkdepends: Vec<ArchVec>,
 }
