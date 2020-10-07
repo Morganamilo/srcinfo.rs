@@ -67,10 +67,7 @@ fn empty_to_none(s: &str) -> Option<&str> {
 }
 
 fn append_arch_strings(arch_strings: &mut Vec<ArchVec>, arch: Option<&str>, value: &str) {
-    if let Some(vec) = arch_strings
-        .iter_mut()
-        .find(|a| arch == a.arch.as_ref().map(|x| x.as_str()))
-    {
+    if let Some(vec) = arch_strings.iter_mut().find(|a| arch == a.arch.as_deref()) {
         vec.vec.push(value.to_string());
     } else {
         arch_strings.push(ArchVec::new(arch, vec![value.to_string()]));
