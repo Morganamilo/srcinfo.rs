@@ -42,6 +42,18 @@ impl ArchVec {
             Some(ref arch) => arch == s.as_ref(),
         }
     }
+
+    /// Creates an Iterator out of a slice of ArchVecs yielding only entries that support the given
+    /// architecture.
+    pub fn supported<'a, S: AsRef<str>>(
+        v: &'a [ArchVec],
+        arch: S,
+    ) -> impl Iterator<Item = &'a str> {
+        v.iter()
+            .filter(move |v| v.supports(arch.as_ref()))
+            .flat_map(|v| &v.vec)
+            .map(|s| s.as_str())
+    }
 }
 
 /// The fields from a .SRCINFO that only apply to the pkgbase.
