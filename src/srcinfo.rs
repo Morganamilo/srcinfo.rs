@@ -46,7 +46,6 @@ impl ArchVec {
 
 /// The fields from a .SRCINFO that only apply to the pkgbase.
 #[allow(missing_docs)]
-#[non_exhaustive]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct PackageBase {
     pub pkgbase: String,
@@ -69,7 +68,6 @@ pub struct PackageBase {
 
 /// The fields from a .SRCINFO that are unique to each package.
 #[allow(missing_docs)]
-#[non_exhaustive]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 pub struct Package {
     pub pkgname: String,
