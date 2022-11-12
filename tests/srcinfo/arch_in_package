@@ -1,0 +1,10 @@
+pkgbase = test
+	pkgdesc = Minimal example to reproduce the bug
+	pkgver = 1
+	pkgrel = 1
+	arch = x86_64
+	arch = aarch64
+
+pkgname = test
+	depends = systemd
+	depends_x86_64 = fwupd

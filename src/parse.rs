@@ -243,11 +243,13 @@ impl Parser {
             let base = &self.srcinfo.pkg;
             let pkg = self.srcinfo.pkgs.last();
             let pkg = pkg.unwrap_or(&self.srcinfo.pkg);
-            if has_override(&self.empty_overrides, key, Some(arch)) {
-                self.check_arch(&base.arch, key_arch, arch)?;
-            } else {
-                self.check_arch(&pkg.arch, key_arch, arch)?;
-            }
+            let pkg_arch =
+                if pkg.arch.is_empty() && !has_override(&self.empty_overrides, "arch", None) {
+                    &base.arch
+                } else {
+                    &pkg.arch
+                };
+            self.check_arch(pkg_arch, key_arch, arch)?;
         }
 
         let value = value.unwrap();

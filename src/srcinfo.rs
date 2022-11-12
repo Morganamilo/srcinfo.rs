@@ -762,4 +762,29 @@ mod tests {
             _ => panic!("{:?}", err),
         }
     }
+
+    #[test]
+    fn arch_in_package() {
+        let srcinfo = include_str!("../tests/srcinfo/arch_in_package")
+            .parse::<Srcinfo>()
+            .unwrap();
+
+        assert_eq!(srcinfo.pkgs[0].depends.len(), 2);
+    }
+
+    #[test]
+    fn arch_in_package_override() {
+        let err = include_str!("../tests/srcinfo/arch_in_package_override")
+            .parse::<Srcinfo>()
+            .unwrap_err();
+        assert_eq!(err.line.as_ref().unwrap().number, 10);
+
+        match err.kind {
+            ErrorKind::UndeclaredArch(ref key, ref arch) => {
+                assert_eq!(key, "depends_x86_64");
+                assert_eq!(arch, "x86_64");
+            }
+            _ => panic!("{:?}", err),
+        }
+    }
 }
