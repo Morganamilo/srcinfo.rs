@@ -2,7 +2,7 @@
 name = "srcinfo"
 version = "1.0.0"
 authors = ["morganamilo <morganamilo@gmail.com>"]
-edition = "2018"
+edition = "2021"
 description = "A libary for parsing .SRCINFO files"
 homepage = "http://github.com/Morganamilo/srcinfo.rs"
 repository = "http://github.com/Morganamilo/srcinfo.rs"

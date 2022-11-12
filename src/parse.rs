@@ -355,7 +355,7 @@ mod tests {
         let err = split_pair("a").unwrap_err();
         match err {
             ErrorKind::EmptyValue(ref key) => assert_eq!(key, "a"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         assert!(split_pair("=b").is_err());

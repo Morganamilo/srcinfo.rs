@@ -296,7 +296,7 @@ mod tests {
 
         for file in path.map(|x| x.unwrap()) {
             let srcinfo = Srcinfo::parse_file(file.path());
-            assert!(srcinfo.is_ok(), format!("{:?} {:?}", file, srcinfo));
+            assert!(srcinfo.is_ok(), "{:?} {:?}", file, srcinfo);
         }
     }
 
@@ -581,7 +581,7 @@ mod tests {
                 assert_eq!(key, "depends_any");
                 assert_eq!(arch, "any");
             }
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/undeclared_arch2")
@@ -594,7 +594,7 @@ mod tests {
                 assert_eq!(key, "depends_bar");
                 assert_eq!(arch, "bar");
             }
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -607,7 +607,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::KeyBeforePkgbase(ref key) => assert_eq!(key, "pkgdesc"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -620,7 +620,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::DuplicatePkgbase => {}
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -633,7 +633,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::KeyAfterPkgname(ref key) => assert_eq!(key, "noextract"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -646,7 +646,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::KeyBeforePkgbase(ref key) => assert_eq!(key, "pkgname"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/key_before_pkgbase")
@@ -656,7 +656,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::KeyBeforePkgbase(ref key) => assert_eq!(key, "arch"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -672,7 +672,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::MissingField(ref key) => assert_eq!(key, "pkgrel"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/no_pkgver")
@@ -682,7 +682,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::MissingField(ref key) => assert_eq!(key, "pkgver"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/no_pkgname")
@@ -692,7 +692,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::MissingField(ref key) => assert_eq!(key, "pkgname"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/empty")
@@ -702,7 +702,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::MissingField(ref key) => assert_eq!(key, "pkgbase"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/no_pkgname")
@@ -712,7 +712,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::MissingField(ref key) => assert_eq!(key, "pkgname"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -725,7 +725,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::EmptyKey => {}
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -738,7 +738,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::EmptyValue(ref key) => assert_eq!(key, "pkgver"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
 
         let err = include_str!("../tests/srcinfo/no_value2")
@@ -748,7 +748,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::EmptyValue(ref key) => assert_eq!(key, "arch"),
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 
@@ -759,7 +759,7 @@ mod tests {
 
         match err.kind {
             ErrorKind::IoError(_) => {}
-            _ => panic!(format!("{:?}", err)),
+            _ => panic!("{:?}", err),
         }
     }
 }
