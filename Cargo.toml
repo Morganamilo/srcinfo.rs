@@ -11,5 +11,6 @@ readme = "README.md"
 license = "GPL-3.0"
 keywords = ["srcinfo", "pkgbuild", "arch", "makepkg", "aur"]
 categories = ["parser-implementations"]
+include = ["src/**/*", "LICENSE", "README.md", "CHANGELOG.md"]
 
 [dependencies]
