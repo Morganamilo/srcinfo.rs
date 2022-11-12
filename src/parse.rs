@@ -39,14 +39,12 @@ macro_rules! merge_arch_string {
 
 // Splits a "key = pair"
 fn split_pair(s: &str) -> Result<(&str, Option<&str>), ErrorKind> {
-    let mut split = s.splitn(2, '=').map(|s| s.trim());
-    let key = split.next().unwrap();
+    let split = s.split_once('=');
+    let split = split.ok_or_else(|| ErrorKind::EmptyValue(s.to_string()))?;
+    let (key, value) = (split.0.trim(), split.1.trim());
     if key.is_empty() {
         return Err(ErrorKind::EmptyKey);
     }
-    let value = split
-        .next()
-        .ok_or_else(|| ErrorKind::EmptyValue(key.to_string()))?;
     Ok((key, empty_to_none(value)))
 }
 
@@ -77,7 +75,7 @@ fn append_arch_strings(arch_strings: &mut Vec<ArchVec>, arch: Option<&str>, valu
 fn has_override(overrides: &[(String, Option<String>)], key: &str, arch: Option<&str>) -> bool {
     overrides
         .iter()
-        .map(|(k, a)| (k.as_str(), a.as_ref().map(|x| x.as_str())))
+        .map(|(k, a)| (k.as_str(), a.as_deref()))
         .any(|x| x == (key, arch))
 }
 
