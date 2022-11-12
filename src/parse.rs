@@ -124,7 +124,7 @@ impl Parser {
         }
     }
 
-    #[allow(clippy::cyclomatic_complexity)]
+    #[allow(clippy::cognitive_complexity)]
     fn merge_current_package(&mut self) {
         if let Some(package) = self.srcinfo.pkgs.last_mut() {
             merge!(self, package, pkgdesc);

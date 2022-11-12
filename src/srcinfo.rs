@@ -45,10 +45,7 @@ impl ArchVec {
 
     /// Creates an Iterator out of a slice of ArchVecs yielding only entries that support the given
     /// architecture.
-    pub fn supported<'a, S: AsRef<str>>(
-        v: &'a [ArchVec],
-        arch: S,
-    ) -> impl Iterator<Item = &'a str> {
+    pub fn supported<S: AsRef<str>>(v: &[ArchVec], arch: S) -> impl Iterator<Item = &str> {
         v.iter()
             .filter(move |v| v.supports(arch.as_ref()))
             .flat_map(|v| &v.vec)
