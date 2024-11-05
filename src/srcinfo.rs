@@ -8,6 +8,7 @@ use crate::parse::Parser;
 
 /// ArchVec represents a Vector of possibly architecture specific fields.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct ArchVec {
     /// The architecture of the field, None is equivalent to 'any'
     pub arch: Option<String>,
@@ -56,6 +57,7 @@ impl ArchVec {
 /// The fields from a .SRCINFO that only apply to the pkgbase.
 #[allow(missing_docs)]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct PackageBase {
     pub pkgbase: String,
     pub pkgver: String,
@@ -78,6 +80,7 @@ pub struct PackageBase {
 /// The fields from a .SRCINFO that are unique to each package.
 #[allow(missing_docs)]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Package {
     pub pkgname: String,
     pub pkgdesc: Option<String>,
@@ -98,6 +101,7 @@ pub struct Package {
 
 /// A complete representation of a .SRCINFO file.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Srcinfo {
     /// Fields belonging to the pkgbase
     pub base: PackageBase,

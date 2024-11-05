@@ -14,3 +14,7 @@ categories = ["parser-implementations"]
 include = ["src/**/*", "LICENSE", "README.md", "CHANGELOG.md"]
 
 [dependencies]
+serde = { version = "1", optional = true, features = ["serde_derive"] }
+
+[features]
+serde = ["dep:serde"]
