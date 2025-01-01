@@ -67,7 +67,7 @@ impl ArchVec {
     /// Gets the list of values if the ArchVec supports the given architecture
     pub fn values<S: AsRef<str>>(&self, arch: S) -> &[String] {
         if self.supports(arch) {
-            &self.vec[..]
+            self.all()
         } else {
             &[]
         }
@@ -243,11 +243,9 @@ impl Srcinfo {
     /// # }
     /// ```
     pub fn version(&self) -> String {
-        let base = &self.base;
-        if let Some(ref epoch) = base.epoch {
-            format!("{}:{}-{}", epoch, base.pkgver, base.pkgrel)
-        } else {
-            format!("{}-{}", base.pkgver, base.pkgrel)
+        match self.epoch() {
+            Some(epoch) => format!("{}:{}-{}", epoch, self.pkgver(), self.pkgrel()),
+            None => format!("{}-{}", self.pkgver(), self.pkgrel()),
         }
     }
 
