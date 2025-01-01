@@ -6,6 +6,23 @@ use std::str::FromStr;
 use crate::error::Error;
 use crate::parse::Parser;
 
+macro_rules! get {
+    ($fn:ident, $( $field:ident ).+, $typ:ty) => {
+        #[allow(missing_docs)]
+        pub fn $fn(&self) -> $typ {
+            &self. $( $field ).+
+        }
+    };
+}
+macro_rules! geto {
+    ($fn:ident, $( $field:ident ).+, $typ:ty) => {
+        #[allow(missing_docs)]
+        pub fn $fn(&self) -> $typ {
+            self. $( $field ).+ .as_deref()
+        }
+    };
+}
+
 /// ArchVec represents a Vector of possibly architecture specific fields.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
@@ -26,30 +43,53 @@ impl<S: Into<String>> From<S> for ArchVec {
 }
 
 impl ArchVec {
-    /// Create a new ArchVec from a given architecture and vec
+    /// Create a new ArchVec from an optional architecture and a vec
     pub fn new<S: Into<String>>(arch: Option<S>, vec: Vec<String>) -> ArchVec {
-        ArchVec {
-            arch: arch.map(|x| x.into()),
-            vec,
+        let arch = arch.map(|x| x.into());
+        ArchVec { arch, vec }
+    }
+
+    /// Create a new ArchVec from a given architecture and a vec
+    pub fn with_arch<S: Into<String>>(arch: S, vec: Vec<String>) -> ArchVec {
+        Self::new(Some(arch), vec)
+    }
+
+    /// Create a new ArchVec that allows any architecture
+    pub fn any(vec: Vec<String>) -> ArchVec {
+        Self::new(Option::<&str>::None, vec)
+    }
+
+    /// A list of the ArchVec's values
+    pub fn all(&self) -> &[String] {
+        &self.vec
+    }
+
+    /// Gets the list of values if the ArchVec supports the given architecture
+    pub fn values<S: AsRef<str>>(&self, arch: S) -> &[String] {
+        if self.supports(arch) {
+            &self.vec[..]
+        } else {
+            &[]
         }
+    }
+
+    /// Gets the architecture
+    pub fn arch(&self) -> Option<&str> {
+        self.arch.as_deref()
     }
 
     /// Checks if a given ArchVec supports a given architecture.
     ///
     /// Returns true if self.arch is none or matches s.
     pub fn supports<S: AsRef<str>>(&self, s: S) -> bool {
-        match self.arch {
-            None => true,
-            Some(ref arch) => arch == s.as_ref(),
-        }
+        self.arch.is_none() || Some(s.as_ref()) == self.arch.as_deref()
     }
 
     /// Creates an Iterator out of a slice of ArchVecs yielding only entries that support the given
     /// architecture.
     pub fn supported<S: AsRef<str>>(v: &[ArchVec], arch: S) -> impl Iterator<Item = &str> {
         v.iter()
-            .filter(move |v| v.supports(arch.as_ref()))
-            .flat_map(|v| &v.vec)
+            .flat_map(move |v| v.values(arch.as_ref()))
             .map(|s| s.as_str())
     }
 }
@@ -97,6 +137,24 @@ pub struct Package {
     pub options: Vec<String>,
     pub install: Option<String>,
     pub changelog: Option<String>,
+}
+
+impl Package {
+    get!(pkgname, pkgname, &str);
+    geto!(pkgdesc, pkgdesc, Option<&str>);
+    get!(arch, arch, &[String]);
+    geto!(url, url, Option<&str>);
+    get!(license, license, &[String]);
+    get!(groups, groups, &[String]);
+    get!(depends, depends, &[ArchVec]);
+    get!(optdepends, optdepends, &[ArchVec]);
+    get!(provides, provides, &[ArchVec]);
+    get!(conflicts, conflicts, &[ArchVec]);
+    get!(replaces, replaces, &[ArchVec]);
+    get!(backup, backup, &[String]);
+    get!(options, options, &[String]);
+    geto!(install, install, Option<&str>);
+    geto!(changelog, changelog, Option<&str>);
 }
 
 /// A complete representation of a .SRCINFO file.
@@ -252,6 +310,39 @@ impl Srcinfo {
     pub fn pkg<S: AsRef<str>>(&self, name: S) -> Option<&Package> {
         self.pkgs.iter().find(|p| p.pkgname == name.as_ref())
     }
+
+    get!(pkgbase, base.pkgbase, &str);
+    get!(pkgver, base.pkgver, &str);
+    get!(pkgrel, base.pkgrel, &str);
+    geto!(epoch, base.epoch, Option<&str>);
+    get!(source, base.source, &[ArchVec]);
+    get!(valid_pgp_keys, base.valid_pgp_keys, &[String]);
+    get!(no_extract, base.no_extract, &[String]);
+    get!(md5sums, base.md5sums, &[ArchVec]);
+    get!(sha1sums, base.sha1sums, &[ArchVec]);
+    get!(sha224sums, base.sha224sums, &[ArchVec]);
+    get!(sha256sums, base.sha256sums, &[ArchVec]);
+    get!(sha384sums, base.sha384sums, &[ArchVec]);
+    get!(sha512sums, base.sha512sums, &[ArchVec]);
+    get!(b2sums, base.b2sums, &[ArchVec]);
+    get!(makedepends, base.makedepends, &[ArchVec]);
+    get!(checkdepends, base.checkdepends, &[ArchVec]);
+
+    get!(pkgname, pkg.pkgname, &str);
+    geto!(pkgdesc, pkg.pkgdesc, Option<&str>);
+    get!(arch, pkg.arch, &[String]);
+    geto!(url, pkg.url, Option<&str>);
+    get!(license, pkg.license, &[String]);
+    get!(groups, pkg.groups, &[String]);
+    get!(depends, pkg.depends, &[ArchVec]);
+    get!(optdepends, pkg.optdepends, &[ArchVec]);
+    get!(provides, pkg.provides, &[ArchVec]);
+    get!(conflicts, pkg.conflicts, &[ArchVec]);
+    get!(replaces, pkg.replaces, &[ArchVec]);
+    get!(backup, pkg.backup, &[String]);
+    get!(options, pkg.options, &[String]);
+    geto!(install, pkg.install, Option<&str>);
+    geto!(changelog, pkg.changelog, Option<&str>);
 }
 
 #[cfg(test)]
@@ -787,5 +878,60 @@ mod tests {
             }
             _ => panic!("{:?}", err),
         }
+    }
+
+    #[test]
+    fn arch_vecs() {
+        let field = vec![
+            ArchVec::with_arch("a", vec!["1".to_string()]),
+            ArchVec::with_arch("b", vec!["2".to_string()]),
+            ArchVec::with_arch("c", vec!["3".to_string()]),
+            ArchVec::any(vec!["4".to_string()]),
+        ];
+
+        assert_eq!(
+            ArchVec::supported(&field, "b",).next().unwrap(),
+            "2".to_string()
+        );
+    }
+
+    #[test]
+    fn arch_vecs2() {
+        let a = vec![
+            ArchVec::with_arch("a", vec!["1".to_string()]),
+            ArchVec::with_arch("b", vec!["2".to_string()]),
+            ArchVec::with_arch("c", vec!["3".to_string()]),
+            ArchVec::any(vec!["4".to_string()]),
+        ];
+        let b = vec![
+            ArchVec::with_arch("a", vec!["1".to_string()]),
+            ArchVec::with_arch("b", vec!["2".to_string()]),
+            ArchVec::with_arch("c", vec!["3".to_string()]),
+            ArchVec::any(vec!["4".to_string()]),
+        ];
+        let c = vec![
+            ArchVec::with_arch("a", vec!["1".to_string()]),
+            ArchVec::with_arch("b", vec!["2".to_string()]),
+            ArchVec::with_arch("c", vec!["3".to_string()]),
+            ArchVec::any(vec!["4".to_string()]),
+        ];
+
+        let vals = a
+            .iter()
+            .chain(&b)
+            .chain(&c)
+            .flat_map(|v| v.values("c"))
+            .collect::<Vec<_>>();
+        assert_eq!(
+            vals,
+            vec![
+                &"3".to_string(),
+                &"4".to_string(),
+                &"3".to_string(),
+                &"4".to_string(),
+                &"3".to_string(),
+                &"4".to_string(),
+            ]
+        );
     }
 }
