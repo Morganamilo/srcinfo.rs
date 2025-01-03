@@ -64,7 +64,7 @@ impl ArchVec {
         &self.vec
     }
 
-    /// Gets the list of values if the ArchVec supports the given architecture
+    /// Returns a list of values that are active under the given architecture
     pub fn values<S: AsRef<str>>(&self, arch: S) -> &[String] {
         if self.supports(arch) {
             self.all()
@@ -82,12 +82,17 @@ impl ArchVec {
     ///
     /// Returns true if self.arch is none or matches s.
     pub fn supports<S: AsRef<str>>(&self, s: S) -> bool {
-        self.arch.is_none() || Some(s.as_ref()) == self.arch.as_deref()
+        self.arch.as_deref().map_or(true, |a| a == s.as_ref())
     }
 
-    /// Creates an Iterator out of a slice of ArchVecs yielding only entries that support the given
-    /// architecture.
+    #[doc(hidden)]
     pub fn supported<S: AsRef<str>>(v: &[ArchVec], arch: S) -> impl Iterator<Item = &str> {
+        Self::active(v, arch)
+    }
+
+    /// Creates an Iterator out of a slice of ArchVecs yielding only entries that would be included
+    /// under the given architecture.
+    pub fn active<S: AsRef<str>>(v: &[ArchVec], arch: S) -> impl Iterator<Item = &str> {
         v.iter()
             .flat_map(move |v| v.values(arch.as_ref()))
             .map(|s| s.as_str())
