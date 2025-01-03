@@ -9,9 +9,9 @@
 //! perform any version comparison, dependency checking or any other
 //! extra functionality.
 //!
-//! ## Working with srcinfo.rs
+//! ## Quickstart
 //!
-//! [`Srcinfo`] is the main type of this crate.
+//! [`Srcinfo`] is the main type for this crate.
 //!
 //! ```
 //! # use srcinfo::Error;
