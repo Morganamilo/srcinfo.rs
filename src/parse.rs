@@ -103,6 +103,14 @@ impl Parser {
     fn parse_line(&mut self, line: &str) -> Result<(), ErrorKind> {
         let line = line.trim();
 
+        if self.srcinfo.pkgbase().is_empty() && line.trim_start().starts_with('#') {
+            let comment = line[1..].trim();
+            if !self.srcinfo.comment.is_empty() {
+                self.srcinfo.comment.push('\n');
+            }
+            self.srcinfo.comment.push_str(comment);
+        }
+
         if line.is_empty() || line.starts_with('#') {
             return Ok(());
         }
@@ -211,7 +219,7 @@ impl Parser {
     fn set_header_or_field(&mut self, key: &str, value: Option<&str>) -> Result<(), ErrorKind> {
         if key == "pkgbase" {
             self.set_pkgbase(value)
-        } else if self.srcinfo.base.pkgbase.is_empty() {
+        } else if self.srcinfo.pkgbase().is_empty() {
             Err(ErrorKind::KeyBeforePkgbase(key.to_string()))
         } else if key == "pkgname" {
             let pkgname = value.ok_or_else(|| ErrorKind::EmptyValue(key.to_string()))?;

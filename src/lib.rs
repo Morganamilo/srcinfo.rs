@@ -33,6 +33,12 @@
 //! // Reading global fields
 //! // These fields were declared at the top of the PKGBUILD but may be overridden per package
 //! println!("srcinfo {}-{}:", srcinfo.pkgbase(), srcinfo.version());
+//!
+//! // Print header comment
+//! for comment in srcinfo.comment().lines() {
+//!     println!("comment: {}", comment);
+//! }
+//!
 //! println!("url: {}", srcinfo.url().unwrap_or("none"));
 //! for arch in srcinfo.arch() {
 //!     println!("arch: {}", arch);
@@ -63,7 +69,7 @@
 //! }
 //!
 //! // Get the depends of an x86_64 system
-//! // This inludes the `depends` and `depends_x86_64` fields
+//! // This includes the `depends` and `depends_x86_64` fields
 //! for depend in ArchVec::active(pkg.depends(), "x86_64") {
 //!     println!("depend: {}", depend);
 //! }

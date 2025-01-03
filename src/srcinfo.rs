@@ -166,6 +166,8 @@ impl Package {
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct Srcinfo {
+    /// The header comment
+    pub comment: String,
     /// Fields belonging to the pkgbase
     pub base: PackageBase,
     /// Fields belonging to the pkgbase, may be overridden inside of each package
@@ -319,6 +321,11 @@ impl Srcinfo {
         &self.pkgs
     }
 
+    /// Returns the header comment
+    pub fn comment(&self) -> &str {
+        &self.comment
+    }
+
     get!(pkgbase, base.pkgbase, &str);
     get!(pkgver, base.pkgver, &str);
     get!(pkgrel, base.pkgrel, &str);
@@ -467,6 +474,7 @@ mod tests {
         };
 
         let expected = Srcinfo {
+            comment: String::new(),
             base: base.clone(),
             pkg: package.clone(),
             pkgs: vec![
@@ -578,6 +586,7 @@ mod tests {
         };
 
         let expected = Srcinfo {
+            comment: String::new(),
             base: base.clone(),
             pkg: package.clone(),
             pkgs: vec![
@@ -646,6 +655,7 @@ mod tests {
     #[test]
     fn empty_override() {
         let expected = Srcinfo {
+            comment: String::new(),
             base: PackageBase {
                 pkgbase: "foo".to_string(),
                 pkgver: "1".to_string(),
@@ -885,6 +895,24 @@ mod tests {
             }
             _ => panic!("{:?}", err),
         }
+    }
+
+    #[test]
+    fn comment_1() {
+        let srcinfo = include_str!("../tests/srcinfo/comment-1")
+            .parse::<Srcinfo>()
+            .unwrap();
+
+        assert_eq!(srcinfo.comment(), "123\n\nabc");
+    }
+
+    #[test]
+    fn comment_2() {
+        let srcinfo = include_str!("../tests/srcinfo/comment-2")
+            .parse::<Srcinfo>()
+            .unwrap();
+
+        assert_eq!(srcinfo.comment(), "123\nabc");
     }
 
     #[test]

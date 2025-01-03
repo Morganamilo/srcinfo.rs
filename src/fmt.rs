@@ -83,6 +83,13 @@ impl Display for Srcinfo {
 }
 
 impl Srcinfo {
+    fn write_comment(&self, w: &mut Formatter<'_>) -> FmtResult {
+        for comment in self.comment().lines() {
+            writeln!(w, "# {}", comment)?;
+        }
+        Ok(())
+    }
+
     fn write_pkg(&self, pkg: &Package, w: &mut Formatter<'_>) -> FmtResult {
         write!(w, "\n\npkgname = {}", pkg.pkgname())?;
         write_pkg_val(w, "pkgdesc", pkg.pkgdesc(), self.pkgdesc())?;
@@ -103,6 +110,7 @@ impl Srcinfo {
     }
 
     fn write_all(&self, w: &mut Formatter<'_>) -> FmtResult {
+        self.write_comment(w)?;
         write!(w, "pkgbase = {}", self.pkgbase())?;
         write_arr(w, "pkgdesc", self.pkgdesc())?;
         write_val(w, "pkgver", self.pkgver())?;
