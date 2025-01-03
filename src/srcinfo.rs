@@ -326,7 +326,6 @@ impl Srcinfo {
     get!(makedepends, base.makedepends, &[ArchVec]);
     get!(checkdepends, base.checkdepends, &[ArchVec]);
 
-    get!(pkgname, pkg.pkgname, &str);
     geto!(pkgdesc, pkg.pkgdesc, Option<&str>);
     get!(arch, pkg.arch, &[String]);
     geto!(url, pkg.url, Option<&str>);
