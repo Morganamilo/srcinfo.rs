@@ -1,0 +1,11 @@
+# 123
+#
+# abc
+pkgbase = comment
+	pkgver = 6.0.0
+	pkgrel = 1
+	arch = any
+
+pkgname = comment
+
+# foo
