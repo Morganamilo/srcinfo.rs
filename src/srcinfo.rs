@@ -309,6 +309,11 @@ impl Srcinfo {
         self.pkgs.iter().find(|p| p.pkgname == name.as_ref())
     }
 
+    /// Returns the list of packages in this Srcinfo
+    pub fn pkgs(&self) -> &[Package] {
+        &self.pkgs
+    }
+
     get!(pkgbase, base.pkgbase, &str);
     get!(pkgver, base.pkgver, &str);
     get!(pkgrel, base.pkgrel, &str);
