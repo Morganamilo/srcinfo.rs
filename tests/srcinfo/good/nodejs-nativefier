@@ -13,4 +13,3 @@ pkgbase = nodejs-nativefier
 	sha1sums = b9d2898dc66a95b663a489fcb2e558d03fa4866f
 
 pkgname = nodejs-nativefier
-

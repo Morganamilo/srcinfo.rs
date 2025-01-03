@@ -26,4 +26,3 @@ pkgname = freedoom1-git
 pkgname = freedoom2-git
 	provides = freedoom
 	provides = freedoom2
-

@@ -16,4 +16,3 @@ pkgbase = pacmon-git
 	sha256sums = 82f0a263cc0ebc08e43043d8dec5118afb56f5bbaef64a2021dc0b43f6671c5a
 
 pkgname = pacmon-git
-

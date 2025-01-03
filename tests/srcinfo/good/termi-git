@@ -11,4 +11,3 @@ pkgbase = termi-git
 	sha256sums = SKIP
 
 pkgname = termi-git
-

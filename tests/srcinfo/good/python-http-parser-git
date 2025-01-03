@@ -14,4 +14,3 @@ pkgbase = python-http-parser-git
 	md5sums = SKIP
 
 pkgname = python-http-parser-git
-

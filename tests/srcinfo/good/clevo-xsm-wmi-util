@@ -15,4 +15,3 @@ pkgbase = clevo-xsm-wmi-util
 	sha256sums = 630ff6dbfa90c8a9285badf75b60579b2a9495e85862b62ef77a3654535e4b72
 
 pkgname = clevo-xsm-wmi-util
-

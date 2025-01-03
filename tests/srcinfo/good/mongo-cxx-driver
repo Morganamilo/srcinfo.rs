@@ -16,4 +16,3 @@ pkgbase = mongo-cxx-driver
 	md5sums = fd1ff0f9b2122225e3b402c2bae30427
 
 pkgname = mongo-cxx-driver
-

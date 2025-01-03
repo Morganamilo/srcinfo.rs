@@ -16,4 +16,3 @@ pkgbase = ruby-faraday-cookie_jar
 	sha1sums = 0c3f1b3e14be4c3e44971b9c8d59410e2001c3a5
 
 pkgname = ruby-faraday-cookie_jar
-

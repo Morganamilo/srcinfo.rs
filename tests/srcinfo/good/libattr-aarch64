@@ -16,4 +16,3 @@ pkgbase = libattr-aarch64
 	sha256sums = SKIP
 
 pkgname = libattr-aarch64
-

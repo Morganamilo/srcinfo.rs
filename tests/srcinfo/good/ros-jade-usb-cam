@@ -26,4 +26,3 @@ pkgbase = ros-jade-usb-cam
 	md5sums = SKIP
 
 pkgname = ros-jade-usb-cam
-

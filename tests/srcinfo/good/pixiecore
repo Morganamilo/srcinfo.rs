@@ -13,4 +13,3 @@ pkgbase = pixiecore
 	makedepends = jq
 
 pkgname = pixiecore
-

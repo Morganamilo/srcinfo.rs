@@ -22,4 +22,3 @@ pkgbase = dbeaver-ee
 	sha256sums_x86_64 = 3f10224413a62df0b46194778b8561340b713b04e278f3a5139ea8e466d26f76
 
 pkgname = dbeaver-ee
-

@@ -36,4 +36,3 @@ pkgbase = bazarr-git
 	sha256sums = 288dbffb34c13cc6e3d599144138dd5d0de2ef40807649e3641669a0cb0788fa
 
 pkgname = bazarr-git
-

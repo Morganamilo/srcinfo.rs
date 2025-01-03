@@ -10,4 +10,3 @@ pkgbase = mpv-prescalers-git
 	sha256sums = SKIP
 
 pkgname = mpv-prescalers-git
-

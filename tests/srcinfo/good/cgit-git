@@ -28,4 +28,3 @@ pkgbase = cgit-git
 	sha256sums = 89927d462c0504863c163eb8a210e5d65db30ee6e4300ff6a2f92460e4f20a62
 
 pkgname = cgit-git
-

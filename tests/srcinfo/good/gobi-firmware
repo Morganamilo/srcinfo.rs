@@ -15,4 +15,3 @@ pkgbase = gobi-firmware
 	sha256sums = c0af8704d37eba54df3dabee047cc9c27ef4f90d5e907e46c3fa972a2ca82210
 
 pkgname = gobi-firmware
-

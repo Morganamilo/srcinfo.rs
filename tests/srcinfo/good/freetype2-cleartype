@@ -35,4 +35,3 @@ pkgbase = freetype2-cleartype
 pkgname = freetype2-cleartype
 	install = freetype2.install
 	backup = etc/profile.d/freetype2.sh
-

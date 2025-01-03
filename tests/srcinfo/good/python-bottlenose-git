@@ -14,4 +14,3 @@ pkgbase = python-bottlenose-git
 	sha256sums = SKIP
 
 pkgname = python-bottlenose-git
-

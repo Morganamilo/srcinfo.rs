@@ -28,4 +28,3 @@ pkgname = libgphobos-lib32
 	pkgdesc = Standard library for D programming language, GDC port
 	provides = d-runtime-lib32
 	provides = d-stdlib-lib32
-

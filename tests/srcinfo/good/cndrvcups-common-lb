@@ -25,4 +25,3 @@ pkgbase = cndrvcups-common-lb
 	depends_x86_64 = lib32-gcc-libs
 
 pkgname = cndrvcups-common-lb
-

@@ -16,4 +16,3 @@ pkgbase = check_bareos-git
 	sha512sums = SKIP
 
 pkgname = check_bareos-git
-

@@ -23,4 +23,3 @@ pkgname = python-nss
 pkgname = python2-nss
 	depends = nss
 	depends = python2
-

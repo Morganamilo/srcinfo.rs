@@ -50,4 +50,3 @@ pkgbase = icaclient
 	sha256sums_armv7h = b224d894c980e29298398e1d6c1d837ad67ce201fa9ffea7d283fa3d368f23b7
 
 pkgname = icaclient
-

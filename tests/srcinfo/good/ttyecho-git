@@ -9,4 +9,3 @@ pkgbase = ttyecho-git
 	sha1sums = SKIP
 
 pkgname = ttyecho-git
-

@@ -23,4 +23,3 @@ pkgbase = checkmails
 	sha512sums = 0ab34ba8db7581da848573b18769b15256cf20fc4a159a4871f6d3ae1d4af8b09bf1c555f7b748813ac2f147cf864bda1c20ebeb67739d79533ff773001c0757
 
 pkgname = checkmails
-

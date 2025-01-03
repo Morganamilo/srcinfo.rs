@@ -14,4 +14,3 @@ pkgbase = ros-jade-voxel-grid
 	sha256sums = SKIP
 
 pkgname = ros-jade-voxel-grid
-

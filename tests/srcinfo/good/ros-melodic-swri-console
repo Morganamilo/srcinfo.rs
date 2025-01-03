@@ -22,4 +22,3 @@ pkgbase = ros-melodic-swri-console
 	sha256sums = 3b316832e42c12ebf733b8f9f299ad56326bdeea281c36e1323dfe6c195a4cfe
 
 pkgname = ros-melodic-swri-console
-

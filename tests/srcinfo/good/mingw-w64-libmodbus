@@ -16,4 +16,3 @@ pkgbase = mingw-w64-libmodbus
 	md5sums = 00c6e44c5568c7027d0a76cba83d72c2
 
 pkgname = mingw-w64-libmodbus
-

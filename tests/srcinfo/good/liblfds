@@ -13,4 +13,3 @@ pkgbase = liblfds
 	md5sums = 2a4cb6d64d8d9333b050059e4a1b7782
 
 pkgname = liblfds
-

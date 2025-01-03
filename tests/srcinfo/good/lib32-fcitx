@@ -31,4 +31,3 @@ pkgname = lib32-fcitx-qt4
 	depends = lib32-fcitx
 	conflicts = lib32-fcitx-qt
 	replaces = lib32-fcitx-qt
-

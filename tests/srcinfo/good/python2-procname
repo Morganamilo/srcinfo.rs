@@ -13,4 +13,3 @@ pkgbase = python2-procname
 	sha256sums = bcf345b4043a155953340b718d560c79c752221003df5e68f638e81df8827a11
 
 pkgname = python2-procname
-

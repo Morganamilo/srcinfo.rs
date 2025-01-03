@@ -10,4 +10,3 @@ pkgbase = python2-dnsq
 	sha256sums = c846c2e5d6e69be124fb14f7ccd3f64eba62df7421227afc5fdcfb221d1a1448
 
 pkgname = python2-dnsq
-

@@ -32,8 +32,6 @@ pkgbase = upp
 	md5sums = 9ad99eb6ead298341b6698e505067d7c
 
 pkgname = upp
-	pkgdesc = Radical and innovative multiplatform C++ framework (known as U++)
-	arch = any
 	depends = theide
 	optdepends = libnotify: Enables compiling gtk-styled apps
 	options = emptydirs
@@ -58,4 +56,3 @@ pkgname = umk
 	depends = desktop-file-utils
 	options = !makeflags
 	options = emptydirs
-

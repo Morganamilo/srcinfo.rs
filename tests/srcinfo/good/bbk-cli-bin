@@ -15,4 +15,3 @@ pkgbase = bbk-cli-bin
 	sha256sums_armv8h = 1cb2c8cb62787f00defca0667c646c8833045de09c0de8ee5e0a301ba40c0ee8
 
 pkgname = bbk-cli-bin
-

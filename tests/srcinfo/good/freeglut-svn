@@ -31,4 +31,3 @@ pkgname = freeglut-wayland-svn
 	depends = wayland
 	depends = libxkbcommon
 	depends = libgl
-

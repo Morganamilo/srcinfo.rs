@@ -12,4 +12,3 @@ pkgbase = python-rasterio
 	sha256sums = 17b18c4964979c1954439eedcb806b83d1bfd7e2cbe1f459c59680919fa581c2
 
 pkgname = python-rasterio
-

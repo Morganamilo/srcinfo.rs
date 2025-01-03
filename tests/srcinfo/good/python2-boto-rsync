@@ -11,4 +11,3 @@ pkgbase = python2-boto-rsync
 	depends = python2-boto
 
 pkgname = python2-boto-rsync
-

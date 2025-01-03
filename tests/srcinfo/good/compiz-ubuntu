@@ -55,4 +55,3 @@ pkgbase = compiz-ubuntu
 	sha512sums = 1ec09ac2bbfe242670f9b51842c58bbe9b379f7a1bfeec12157b5ba3ea3142c88eb62462968f4378c64d75fa4148dca6123583399f93e2b6990c094d386f0951
 
 pkgname = compiz-ubuntu
-

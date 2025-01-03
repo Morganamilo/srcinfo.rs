@@ -22,4 +22,3 @@ pkgbase = ros-kinetic-transmission-interface
 	sha256sums = 931b1526d26e7e36d2cd6a0b3bb87f7206b3d8480723efb324c6b3ef2cfa332c
 
 pkgname = ros-kinetic-transmission-interface
-

@@ -22,4 +22,3 @@ pkgname = pygobject-tutorial-devhelp-git
 	provides = pygobject-tutorial-devhelp
 	conflicts = pygobject-tutorial-devhelp
 	replaces = pygobject-tutorial-devhelp
-

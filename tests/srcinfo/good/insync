@@ -21,4 +21,3 @@ pkgbase = insync
 	sha256sums_x86_64 = a42cbf92ad26761152a74682435a41487058b9aa9f3867d8b1ce5573fc35717f
 
 pkgname = insync
-

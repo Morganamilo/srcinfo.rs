@@ -10,4 +10,3 @@ pkgbase = vncsnapshot-png
 	sha256sums = 51207534c7897223c88c931eb31d929695ae855a9b3481f55b3ef6123eeca1d2
 
 pkgname = vncsnapshot-png
-

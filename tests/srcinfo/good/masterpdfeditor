@@ -18,4 +18,3 @@ pkgname = masterpdfeditor
 	depends = qt5-base
 	depends = qt5-svg
 	depends = sane
-

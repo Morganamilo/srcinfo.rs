@@ -24,4 +24,3 @@ pkgname = python2-rednose
 	depends = python2
 	depends = python2-colorama
 	depends = python2-termstyle
-

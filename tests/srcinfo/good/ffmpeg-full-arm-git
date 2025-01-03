@@ -120,4 +120,3 @@ pkgbase = ffmpeg-full-arm-git
 	sha256sums = e0c1b126862072a71e18b9580a6b01afc76a54aa6e642d2c413ba0ac9d3010c4
 
 pkgname = ffmpeg-full-arm-git
-

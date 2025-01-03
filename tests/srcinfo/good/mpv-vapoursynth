@@ -49,4 +49,3 @@ pkgbase = mpv-vapoursynth
 	sha256sums = 5de6c616428c87cf9b39d8ba24446d65d175050c083e1054194d93cf03d5816a
 
 pkgname = mpv-vapoursynth
-

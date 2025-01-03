@@ -14,4 +14,3 @@ pkgbase = uftp
 	sha512sums = f3c799265a55e0cb536f17be3a0ebfad5f81284255083ebe9a12fda4b5ce8407f05a710cb32a41f3dccbc0ac90367c44d4b67058bdbeaa4f2f8efe732463ebf0
 
 pkgname = uftp
-

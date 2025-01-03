@@ -15,4 +15,3 @@ pkgbase = python2-spidev
 	sha256sums = SKIP
 
 pkgname = python2-spidev
-

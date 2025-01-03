@@ -13,4 +13,3 @@ pkgbase = fsharp
 	sha256sums = SKIP
 
 pkgname = fsharp
-

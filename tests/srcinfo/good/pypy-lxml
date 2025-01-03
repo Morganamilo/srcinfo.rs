@@ -13,4 +13,3 @@ pkgbase = pypy-lxml
 	sha1sums = b210b84551d3ac1cadbcfae2fe553040fc7a61dd
 
 pkgname = pypy-lxml
-

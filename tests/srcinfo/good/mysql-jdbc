@@ -17,4 +17,3 @@ pkgbase = mysql-jdbc
 	sha256sums = SKIP
 
 pkgname = mysql-jdbc
-

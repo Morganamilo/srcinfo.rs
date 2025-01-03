@@ -11,4 +11,3 @@ pkgbase = json-parser-git
 	sha512sums = SKIP
 
 pkgname = json-parser-git
-

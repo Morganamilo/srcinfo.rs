@@ -33,4 +33,3 @@ pkgbase = openvpn-auth-ldap
 	sha256sums = ba7b00697baaebab9bf303bc5fd84f8da355115fa94ceb9884bc1c5c24aca4c0
 
 pkgname = openvpn-auth-ldap
-

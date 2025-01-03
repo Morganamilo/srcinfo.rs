@@ -16,4 +16,3 @@ pkgbase = ipwatchd
 	sha256sums = 2fbf3937bcab45adce253fb5aea31f93064748e9b8b5023e8ec25a6245380fd6
 
 pkgname = ipwatchd
-

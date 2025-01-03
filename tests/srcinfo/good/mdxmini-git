@@ -26,4 +26,3 @@ pkgname = mdxplay-git
 	depends = sdl
 	provides = mdxplay
 	conflicts = mdxplay
-

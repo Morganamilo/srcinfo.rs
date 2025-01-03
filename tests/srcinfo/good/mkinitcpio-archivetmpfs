@@ -12,4 +12,3 @@ pkgbase = mkinitcpio-archivetmpfs
 	md5sums = SKIP
 
 pkgname = mkinitcpio-archivetmpfs
-

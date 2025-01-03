@@ -32,4 +32,3 @@ pkgname = python-tensorflow-computecpp
 	optdepends = python-werkzeug: for using tensorboard
 	provides = python-tensorflow
 	conflicts = python-tensorflow
-

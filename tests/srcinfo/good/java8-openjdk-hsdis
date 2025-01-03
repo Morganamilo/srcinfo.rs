@@ -14,4 +14,3 @@ pkgbase = java8-openjdk-hsdis
 	sha256sums = 369737ce51587f92466041a97ab7d2358c6d9e1b6490b3940eb09fb0a9a6ac88
 
 pkgname = java8-openjdk-hsdis
-

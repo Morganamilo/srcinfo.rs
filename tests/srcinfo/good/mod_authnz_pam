@@ -13,4 +13,3 @@ pkgbase = mod_authnz_pam
 	sha1sums = 644c25da063ae560cea8e6a7abf61a62a516e9a5
 
 pkgname = mod_authnz_pam
-

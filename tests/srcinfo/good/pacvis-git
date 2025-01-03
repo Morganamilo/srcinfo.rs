@@ -15,4 +15,3 @@ pkgbase = pacvis-git
 	sha512sums = SKIP
 
 pkgname = pacvis-git
-

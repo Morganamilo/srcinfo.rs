@@ -18,4 +18,3 @@ pkgbase = ruby-fog-core
 	sha512sums = 0acac93d4abf552201cf3ac8c31d80960be5d47323480f443e99528665dc3d15846c906f21b1db19f8de9a80729e3ca6048d375c91f964c0fa9dd332d9abc8f2
 
 pkgname = ruby-fog-core
-

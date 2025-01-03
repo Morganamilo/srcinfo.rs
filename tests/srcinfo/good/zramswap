@@ -12,4 +12,3 @@ pkgbase = zramswap
 	md5sums = a6c029dc942c85704b0f6ac1ca078a24
 
 pkgname = zramswap
-

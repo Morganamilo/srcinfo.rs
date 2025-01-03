@@ -19,4 +19,3 @@ pkgname = jsontocsv
 
 pkgname = python-jsontocsv
 	pkgdesc = Python3 lib to extract data from json and convert to CSV
-

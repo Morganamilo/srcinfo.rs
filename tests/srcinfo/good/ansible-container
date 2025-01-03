@@ -19,4 +19,3 @@ pkgbase = ansible-container
 	md5sums = fa3bebf7d0f30771bda3f15075fdd411
 
 pkgname = ansible-container
-

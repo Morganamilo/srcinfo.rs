@@ -18,4 +18,3 @@ pkgbase = ros-jade-cpp-common
 	sha256sums = e96d8d6fb292b87a7f234945a921f90cd26e3f94640125863870bd58cf86e377
 
 pkgname = ros-jade-cpp-common
-

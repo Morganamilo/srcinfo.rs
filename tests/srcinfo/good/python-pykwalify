@@ -19,4 +19,3 @@ pkgbase = python-pykwalify
 	sha256sums = 97f880ccf5de3b50f85d08226333e4474fcb1ede8d76438e7a6df0831cf0d95d
 
 pkgname = python-pykwalify
-

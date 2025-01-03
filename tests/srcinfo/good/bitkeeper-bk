@@ -10,4 +10,3 @@ pkgbase = bitkeeper-bk
 	sha256sums_x86_64 = c0aa1a75f6bf92cc373ddf134d57dce562727e6e6e280050c46ad7277991e002
 
 pkgname = bitkeeper-bk
-

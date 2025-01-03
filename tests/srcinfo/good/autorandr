@@ -16,4 +16,3 @@ pkgbase = autorandr
 	sha512sums = d3feaac1857ba1d280879681b5bae8b5885a0bd31339d42392df29b198373d349251bb24e7bd6f371d89ae61aa1c5374a020e133bdb4c98291484b0c5ac4c6cc
 
 pkgname = autorandr
-

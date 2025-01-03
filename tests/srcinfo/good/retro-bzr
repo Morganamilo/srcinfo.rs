@@ -11,4 +11,3 @@ pkgbase = retro-bzr
 	provides = retro
 
 pkgname = retro-bzr
-

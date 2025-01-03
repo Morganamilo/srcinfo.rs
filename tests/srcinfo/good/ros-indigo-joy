@@ -23,4 +23,3 @@ pkgbase = ros-indigo-joy
 	sha256sums = e45644510f8943bc38cd8aea63c0cd8a650e72bea95147e85130f3c588702438
 
 pkgname = ros-indigo-joy
-

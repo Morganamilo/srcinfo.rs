@@ -20,4 +20,3 @@ pkgbase = ros-lunar-compressed-image-transport
 	sha256sums = c7bd9bebcf0fa8d306943a42b059bf92bb3d6fef9dea895fd8110a2b7c40947c
 
 pkgname = ros-lunar-compressed-image-transport
-

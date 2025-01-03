@@ -22,4 +22,3 @@ pkgbase = cryptodev-linux
 	md5sums = SKIP
 
 pkgname = cryptodev-linux
-

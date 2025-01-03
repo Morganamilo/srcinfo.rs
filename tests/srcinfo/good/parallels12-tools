@@ -55,4 +55,3 @@ pkgname = parallels12-tools-dkms
 	depends = dkms
 	provides = parallels-tools-dkms
 	conflicts = parallels-tools-dkms
-

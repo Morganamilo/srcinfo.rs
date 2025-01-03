@@ -12,4 +12,3 @@ pkgbase = log4j
 	sha256sums = b7be453b743bdb8c949b6778b477322e2d585d93e03cd0092ef1326382080049
 
 pkgname = log4j
-

@@ -29,4 +29,3 @@ pkgbase = vivaldi
 	sha512sums_x86_64 = c4425e5c86defbe0e9323f6f919816e9d5829d1dd011a6ce56a19513d0ca5679bde00cf016bdb98c3f39bbc34d45c610152d8b0ef10d5d626be4c4ff9068a89f
 
 pkgname = vivaldi
-

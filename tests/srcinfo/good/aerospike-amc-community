@@ -9,4 +9,3 @@ pkgbase = aerospike-amc-community
 	sha256sums = 9d0533f344b325a91d1a3e0c6c5c73226fdcdc5fb2b3c33766e539ec1923598d
 
 pkgname = aerospike-amc-community
-

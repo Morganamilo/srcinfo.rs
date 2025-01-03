@@ -23,4 +23,3 @@ pkgbase = python2-doom_py-git
 	sha512sums = SKIP
 
 pkgname = python2-doom_py-git
-

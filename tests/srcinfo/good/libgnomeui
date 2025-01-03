@@ -18,4 +18,3 @@ pkgbase = libgnomeui
 	sha256sums = a298358c38db97c569efedd7b446fdaaffa3f087cd1a049087043eeca53c7391
 
 pkgname = libgnomeui
-

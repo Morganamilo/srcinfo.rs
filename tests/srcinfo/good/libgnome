@@ -32,4 +32,3 @@ pkgname = libgnome
 pkgname = libgnome-data
 	pkgdesc = Common data from libgnome
 	depends = gconf
-

@@ -21,4 +21,3 @@ pkgbase = v4l2loopback-dkms-git
 	md5sums = 3105b604a5ebe4af6df587049ed19946
 
 pkgname = v4l2loopback-dkms-git
-

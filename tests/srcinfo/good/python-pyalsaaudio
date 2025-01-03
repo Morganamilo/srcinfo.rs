@@ -21,4 +21,3 @@ pkgname = python2-pyalsaaudio
 	pkgdesc = ALSA wrappers for Python 2
 	depends = python2
 	depends = alsa-lib
-

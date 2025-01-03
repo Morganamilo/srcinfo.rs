@@ -23,4 +23,3 @@ pkgbase = ros-lunar-rqt-msg
 	sha256sums = 22672ad0b94edc8b799d842b28b07000fb9cdd4e6d77939c851afd6f8e50c4c5
 
 pkgname = ros-lunar-rqt-msg
-

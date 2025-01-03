@@ -27,4 +27,3 @@ pkgbase = qtel-git
 	sha256sums = SKIP
 
 pkgname = qtel-git
-

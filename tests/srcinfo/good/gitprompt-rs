@@ -11,4 +11,3 @@ pkgbase = gitprompt-rs
 	md5sums = 71651c4541949044288f7deb5679132d
 
 pkgname = gitprompt-rs
-

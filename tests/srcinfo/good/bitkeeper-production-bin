@@ -13,4 +13,3 @@ pkgbase = bitkeeper-production-bin
 	sha256sums_x86_64 = b06bb7d288b04da1ea3c89669d087eb735844a6370ae7dd5b7784365f0f075aa
 
 pkgname = bitkeeper-production-bin
-

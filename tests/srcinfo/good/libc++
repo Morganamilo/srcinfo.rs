@@ -43,4 +43,3 @@ pkgname = libc++abi
 pkgname = libc++experimental
 	pkgdesc = LLVM C++ experimental library.
 	depends = libc++=6.0.0-1
-

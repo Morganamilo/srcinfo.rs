@@ -20,4 +20,3 @@ pkgbase = gitlab-pages
 	sha256sums = fd8f9b60e2247077ad00765904237b6b1c36b11a952cd3b1ad88e74417b82a96
 
 pkgname = gitlab-pages
-

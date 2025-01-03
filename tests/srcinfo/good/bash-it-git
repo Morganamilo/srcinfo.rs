@@ -40,4 +40,3 @@ pkgbase = bash-it-git
 	sha512sums = SKIP
 
 pkgname = bash-it-git
-

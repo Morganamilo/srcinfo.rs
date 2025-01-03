@@ -41,4 +41,3 @@ pkgname = jack2-dbus-git
 	provides = jack2
 	conflicts = jack
 	conflicts = jack2
-

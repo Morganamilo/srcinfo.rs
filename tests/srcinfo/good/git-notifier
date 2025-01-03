@@ -13,4 +13,3 @@ pkgbase = git-notifier
 	md5sums = a99f987693f114be9314e18595199020
 
 pkgname = git-notifier
-

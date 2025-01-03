@@ -55,4 +55,3 @@ pkgbase = tigervnc-git
 	sha256sums = 2ada7da1a926d78f11d2dd8ec376ac5877d2ce2bbb57a99526c13d8fcae6ddd7
 
 pkgname = tigervnc-git
-

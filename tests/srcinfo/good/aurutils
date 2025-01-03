@@ -38,4 +38,3 @@ pkgbase = aurutils
 	sha256sums = 1cb14e6605e38a1bc127d7ea576a02dfbc2d3c0e009597980fe4040a65b347f2
 
 pkgname = aurutils
-

@@ -16,4 +16,3 @@ pkgbase = perl6-html-parser
 	sha256sums = SKIP
 
 pkgname = perl6-html-parser
-

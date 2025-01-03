@@ -19,4 +19,3 @@ pkgbase = git-lfs-arm
 	sha1sums = 145d49542e9dfdec91a2bb0c52c037c67551a447
 
 pkgname = git-lfs-arm
-

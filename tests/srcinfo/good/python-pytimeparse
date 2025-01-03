@@ -15,4 +15,3 @@ pkgname = python-pytimeparse
 
 pkgname = python2-pytimeparse
 	depends = python2
-

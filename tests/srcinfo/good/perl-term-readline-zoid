@@ -13,4 +13,3 @@ pkgbase = perl-term-readline-zoid
 	sha512sums = b13da20516411ffe3996e6809d5f144a8b2ad0504d2ec2d725facd8aeab90b5fcf6ab4c31695454dc2eecaf802d5152e4cb4c9fe57a56a29e0faaedfd1d6d4be
 
 pkgname = perl-term-readline-zoid
-

@@ -10,5 +10,3 @@ pkgbase = python2-pyro3
 	sha256sums = 858e592091f6e64d2ad988f0cdefd4836fa4eb3ef1080bf02039eb944c01033a
 
 pkgname = python2-pyro3
-	depends = python2
-

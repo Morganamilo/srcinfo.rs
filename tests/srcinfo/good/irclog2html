@@ -11,4 +11,3 @@ pkgbase = irclog2html
 	sha256sums = 7a3070be137150f10b9a1186400b4c4883bb66b8559c1d2c1e43a92e2f1ea3c9
 
 pkgname = irclog2html
-

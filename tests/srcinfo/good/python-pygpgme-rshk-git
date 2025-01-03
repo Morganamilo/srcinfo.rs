@@ -27,4 +27,3 @@ pkgname = python-pygpgme-rshk-git
 pkgname = python2-pygpgme-rshk-git
 	depends = python2
 	depends = gpgme
-

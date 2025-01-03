@@ -28,4 +28,3 @@ pkgbase = anki-sync-server-git
 	sha512sums = 1d0666f17c181b4946fd37cc5d323a53d674b0b7e330eac515f4bea74e726162bd357b51e00bf162de7f2229aabec6859363f8c4aa7ce5e8e1974d72661b2860
 
 pkgname = anki-sync-server-git
-

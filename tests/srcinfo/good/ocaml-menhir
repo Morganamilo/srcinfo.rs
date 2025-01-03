@@ -18,4 +18,3 @@ pkgbase = ocaml-menhir
 	md5sums = 6bbea6ad7b390904c9ce6d3e11d73438
 
 pkgname = ocaml-menhir
-

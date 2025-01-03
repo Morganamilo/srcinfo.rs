@@ -15,4 +15,3 @@ pkgbase = perl-log-dispatch-config
 	sha512sums = 827b767806b206f244955f8f57b7206f84aac75012ec6443fb0c427e0fb0e52cad112cc012bd5c43a1e4a82d9fd49adb7bd024130579754dbe0ad4a2218460ef
 
 pkgname = perl-log-dispatch-config
-

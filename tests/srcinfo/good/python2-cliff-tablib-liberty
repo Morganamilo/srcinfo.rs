@@ -12,4 +12,3 @@ pkgbase = python2-cliff-tablib-liberty
 pkgname = python2-cliff-tablib-liberty
 	depends = python2-cliff-liberty
 	depends = python2-tablib
-

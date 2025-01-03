@@ -17,4 +17,3 @@ pkgbase = vmware-systemd-services
 	sha256sums = 89a16bd8cabed700b94fd242e85d7b40d46a76f3e5ae85274cf457d470ca34de
 
 pkgname = vmware-systemd-services
-

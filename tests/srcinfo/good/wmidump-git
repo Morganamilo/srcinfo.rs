@@ -15,4 +15,3 @@ pkgbase = wmidump-git
 	sha256sums = SKIP
 
 pkgname = wmidump-git
-

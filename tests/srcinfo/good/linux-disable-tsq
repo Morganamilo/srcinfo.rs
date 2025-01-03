@@ -52,4 +52,3 @@ pkgname = linux-disable-tsq-headers
 
 pkgname = linux-disable-tsq-docs
 	pkgdesc = Kernel hackers manual - HTML documentation that comes with the Linux-disable-tsq kernel
-

@@ -50,4 +50,3 @@ pkgbase = panda3d-git
 	sha256sums = SKIP
 
 pkgname = panda3d-git
-

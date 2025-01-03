@@ -10,4 +10,3 @@ pkgbase = prosody-mod-smacks
 	sha1sums = 75a4ab9f91014ce3db9c411c0528c963595e3783
 
 pkgname = prosody-mod-smacks
-

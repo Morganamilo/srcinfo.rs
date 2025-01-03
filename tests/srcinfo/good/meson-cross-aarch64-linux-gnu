@@ -13,4 +13,3 @@ pkgbase = meson-cross-aarch64-linux-gnu
 	sha256sums = b22446cdde4fcd7e52953ff1ef8303164efc3fb48486eed46b764eb57ed65d4d
 
 pkgname = meson-cross-aarch64-linux-gnu
-

@@ -11,4 +11,3 @@ pkgbase = stern-bin
 	sha256sums = 085325dcd7f3de20fb58ca964d5acf2b6c9d0f239800eb53a234363b0fd296b5
 
 pkgname = stern-bin
-

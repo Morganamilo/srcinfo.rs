@@ -36,4 +36,3 @@ pkgbase = dropbox
 	sha256sums_x86_64 = fa2978fd13aaac9eb6aef0867dbaf07960cb72e0da1236b505ca2647b0c123a6
 
 pkgname = dropbox
-

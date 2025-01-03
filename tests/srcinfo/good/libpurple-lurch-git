@@ -20,4 +20,3 @@ pkgbase = libpurple-lurch-git
 	sha256sums = SKIP
 
 pkgname = libpurple-lurch-git
-

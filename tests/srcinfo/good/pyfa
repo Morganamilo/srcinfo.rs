@@ -28,4 +28,3 @@ pkgbase = pyfa
 	sha256sums = 0fa4a1cb835ddbb764957cd00426f9bfa52b17bcb6d5dc7428afc256da5e01da
 
 pkgname = pyfa
-

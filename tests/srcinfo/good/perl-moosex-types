@@ -20,4 +20,3 @@ pkgbase = perl-moosex-types
 	sha512sums = 42606b1caeb6423acaaa9288239c63512f398a2fba45492443d3e003c6ae3e93cbd8ea2631d487e428ea7d25b63744e4c2096a1e53012e262c99ff4b0c29484b
 
 pkgname = perl-moosex-types
-

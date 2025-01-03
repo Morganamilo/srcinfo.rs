@@ -17,4 +17,3 @@ pkgname = python-django-extra-views
 
 pkgname = python2-django-extra-views
 	depends = python2-django
-

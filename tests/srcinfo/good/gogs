@@ -34,4 +34,3 @@ pkgbase = gogs
 	sha512sums = 361d318ac3c846eaa6b0260baed8fe21ba5d6b079b0618962e8b67ae91928c61b1296eba2311d6bd032c8bca4a09e51d8fb73e6ff67039b35a5179701a0cd868
 
 pkgname = gogs
-

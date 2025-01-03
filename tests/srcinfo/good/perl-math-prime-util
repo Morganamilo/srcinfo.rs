@@ -33,4 +33,3 @@ pkgbase = perl-math-prime-util
 	sha512sums = c05964c8a3f76bb7881cbcafa0d31b76ac34ff3aa931e834ee151ae79f5f582b5681b31ad75f51d63d3129b9c11246a458b196635ca7c242dbd6dedaddb64298
 
 pkgname = perl-math-prime-util
-

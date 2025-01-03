@@ -12,4 +12,3 @@ pkgbase = nanopond
 	sha512sums = c4bed6fdaa90f830434a732b0c9f9f980154c20a26af55e54d50ddf9403dc020427b9cda8d52f6c864e691a67367d1051132762f6f7211d9c9bd7925bfacdf57
 
 pkgname = nanopond
-

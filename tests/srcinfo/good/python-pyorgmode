@@ -17,4 +17,3 @@ pkgname = python-pyorgmode
 
 pkgname = python2-pyorgmode
 	depends = python2
-

@@ -23,4 +23,3 @@ pkgbase = firefox-esr-bin
 	sha512sums = 8942b11a7cb3761de1185491397185743adf49daa27a2806d14a328a2be8e2cb566c71dc6449016549cb3bd0d328cfe15944490be749a4add213194f6153c3d0
 
 pkgname = firefox-esr-bin
-

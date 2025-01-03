@@ -24,4 +24,3 @@ pkgname = tidb-bin
 
 pkgname = tidb-bin-utils
 	optdepends = go-tools: provides goyacc
-

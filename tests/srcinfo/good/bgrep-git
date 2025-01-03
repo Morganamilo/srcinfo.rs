@@ -14,4 +14,3 @@ pkgbase = bgrep-git
 	md5sums = SKIP
 
 pkgname = bgrep-git
-

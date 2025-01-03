@@ -14,4 +14,3 @@ pkgbase = avahi-static-services
 	sha256sums = 60a516f94e4da95dc65d7f39494d1920a1f64ed59b88579ec5e181b9ed203353
 
 pkgname = avahi-static-services
-

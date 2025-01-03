@@ -11,4 +11,3 @@ pkgbase = python-queryablelist
 	sha512sums = 4e4b69b3fcdc9c019fdb9fb7cc09b917f738a5b3d7b0f3bd4f19d2505a1caac04d1e5371e4ae25d278b960d0ee15af9b6c5c96c9e202c3bb2b8b2327aa320ccc
 
 pkgname = python-queryablelist
-

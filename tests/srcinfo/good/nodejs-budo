@@ -14,4 +14,3 @@ pkgbase = nodejs-budo
 	sha1sums = b99da17665cbf59b42169ebad2aecd672381258e
 
 pkgname = nodejs-budo
-

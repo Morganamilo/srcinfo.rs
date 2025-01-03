@@ -23,4 +23,3 @@ pkgbase = ros-kinetic-eigen-conversions
 	sha256sums = 37608f29197051e03374ef024fce58f2fc17dbcca737fc49ad139b7c81b289f5
 
 pkgname = ros-kinetic-eigen-conversions
-

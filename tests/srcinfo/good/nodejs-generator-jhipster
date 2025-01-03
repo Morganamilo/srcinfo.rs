@@ -11,4 +11,3 @@ pkgbase = nodejs-generator-jhipster
 	sha256sums = e1eaecc3123cfc0b993a51e38731f25f0ed8d15f3d815419eb065f23364ccd69
 
 pkgname = nodejs-generator-jhipster
-

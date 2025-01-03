@@ -23,4 +23,3 @@ pkgbase = xtables-addons
 	sha256sums = 95580b851c79c0bbc484e0d0ea23f53e5c7f439ad73d509e426598565392690d
 
 pkgname = xtables-addons
-

@@ -25,4 +25,3 @@ pkgbase = mingw-w64-libgcrypt
 	sha1sums = 3613a5454aeaef8d264011f2bc9f2303248fb933
 
 pkgname = mingw-w64-libgcrypt
-

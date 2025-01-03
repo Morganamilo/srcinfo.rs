@@ -21,4 +21,3 @@ pkgbase = ros-indigo-openni2-launch
 	sha256sums = f82a11d3f4aa34dd6ba804913559ba2ad4f9ddf1f686cd63452cfb2fb9a73324
 
 pkgname = ros-indigo-openni2-launch
-

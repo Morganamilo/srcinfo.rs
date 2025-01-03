@@ -30,4 +30,3 @@ pkgbase = ros-melodic-nodelet
 	sha256sums = 3a9e9701df570659d70f871eb7e1970dacd3b89c02513c456f8f0ea1a446d15a
 
 pkgname = ros-melodic-nodelet
-

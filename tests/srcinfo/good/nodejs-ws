@@ -14,4 +14,3 @@ pkgbase = nodejs-ws
 	sha1sums = ac60ebad312121d01e16cc3383d7ec67ad0f0f1f
 
 pkgname = nodejs-ws
-

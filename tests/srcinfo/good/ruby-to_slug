@@ -11,4 +11,3 @@ pkgbase = ruby-to_slug
 	sha512sums = 84d6736e062f3c9ba67736dda593e88f38b92315951b4b837bacc2c62970e6366356f3716483d4ecb9e4c0b8ebdb288004e9a922368c7bd519666f20f95353db
 
 pkgname = ruby-to_slug
-

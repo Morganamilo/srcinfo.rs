@@ -22,4 +22,3 @@ pkgbase = ros-kinetic-moveit-fake-controller-manager
 	sha256sums = 3c688946a91d2aaa9c876baf420fffca0ada5be508e7e73b1741b13ac29a4486
 
 pkgname = ros-kinetic-moveit-fake-controller-manager
-

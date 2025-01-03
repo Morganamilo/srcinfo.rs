@@ -13,4 +13,3 @@ pkgbase = chromium-ublock-origin-git
 	sha512sums = SKIP
 
 pkgname = chromium-ublock-origin-git
-

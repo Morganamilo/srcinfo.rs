@@ -15,4 +15,3 @@ pkgbase = setpgrp
 	sha256sums = d058c523e26390851afb309cfa5293ed83df04440506275981615b23cb7ef886
 
 pkgname = setpgrp
-

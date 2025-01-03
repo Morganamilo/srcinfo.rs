@@ -17,4 +17,3 @@ pkgbase = ros-jade-orocos-kdl
 	sha256sums = 034396eaa41b1df4d9ec15147261dece528f6d0257826e4831e1bd80f468695e
 
 pkgname = ros-jade-orocos-kdl
-

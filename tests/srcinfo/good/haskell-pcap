@@ -15,4 +15,3 @@ pkgbase = haskell-pcap
 	md5sums = 492b7ecc53d0ac3599845ab8ac553997
 
 pkgname = haskell-pcap
-

@@ -13,4 +13,3 @@ pkgbase = perl-php-serialization
 	sha512sums = 72218973f21ab71419751cf818e6bd998235aa74bf8ae60ec4a6080ba169d0d7fcefde4f433ce3f6f30ed3084a651deb8aa3a5dd818fc6ebf3fb6188def4efe7
 
 pkgname = perl-php-serialization
-

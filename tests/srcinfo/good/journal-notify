@@ -18,4 +18,3 @@ pkgbase = journal-notify
 	sha256sums = SKIP
 
 pkgname = journal-notify
-

@@ -13,4 +13,3 @@ pkgbase = bitbucket-cli
 	options = !emptydirs
 
 pkgname = bitbucket-cli
-

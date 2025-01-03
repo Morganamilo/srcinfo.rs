@@ -14,4 +14,3 @@ pkgbase = cargo-edit-git
 	sha256sums = SKIP
 
 pkgname = cargo-edit-git
-

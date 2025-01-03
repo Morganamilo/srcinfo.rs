@@ -15,4 +15,3 @@ pkgbase = flatcc
 	sha256sums = c0e9e40ddf90caa0cfefc3f3ce73713e6b9ac5eba4b2e946ae20dee0a559f82e
 
 pkgname = flatcc
-

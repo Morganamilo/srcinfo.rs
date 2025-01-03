@@ -18,4 +18,3 @@ pkgbase = portage-git
 	md5sums = SKIP
 
 pkgname = portage-git
-

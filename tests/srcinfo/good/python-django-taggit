@@ -17,4 +17,3 @@ pkgname = python-django-taggit
 
 pkgname = python2-django-taggit
 	depends = python2-django
-

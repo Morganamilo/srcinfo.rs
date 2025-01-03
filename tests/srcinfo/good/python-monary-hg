@@ -16,4 +16,3 @@ pkgbase = python-monary-hg
 	sha256sums = SKIP
 
 pkgname = python-monary-hg
-

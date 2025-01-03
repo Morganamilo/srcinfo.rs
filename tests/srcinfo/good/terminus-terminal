@@ -13,4 +13,3 @@ pkgbase = terminus-terminal
 	sha256sums = c4716cc4da44bb80ba844258042ef6b63f137f17d911c261f5059327aa05abf3
 
 pkgname = terminus-terminal
-

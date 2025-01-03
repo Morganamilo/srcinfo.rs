@@ -14,4 +14,3 @@ pkgbase = astyle-svn
 	sha256sums = SKIP
 
 pkgname = astyle-svn
-

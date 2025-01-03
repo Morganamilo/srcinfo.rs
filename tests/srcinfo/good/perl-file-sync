@@ -14,4 +14,3 @@ pkgbase = perl-file-sync
 	sha512sums = 32816efa26185f2f26d5a469aa48baf1d22242ec620b663e5fbfdda3ffb360e6d2e1c7349989fa34b8cd84567b7a312863dba2be855cd6e696f67759ef4512b6
 
 pkgname = perl-file-sync
-

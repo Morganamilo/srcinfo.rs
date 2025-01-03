@@ -21,4 +21,3 @@ pkgbase = luabind
 	sha256sums = 4d88455c7a1d5fe2356da07b1d008bdcfc82492a47dae8adefeb588939d3d714
 
 pkgname = luabind
-

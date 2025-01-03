@@ -60,4 +60,3 @@ pkgname = konversation-theme-arc-git
 	provides = konversation-theme-arc
 	conflicts = konversation-theme-arc
 	conflicts = arc-kde-git<2:
-

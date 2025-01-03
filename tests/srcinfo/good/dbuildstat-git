@@ -15,4 +15,3 @@ pkgbase = dbuildstat-git
 	md5sums = SKIP
 
 pkgname = dbuildstat-git
-

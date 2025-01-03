@@ -21,4 +21,3 @@ pkgbase = ebtables-git
 	sha256sums = SKIP
 
 pkgname = ebtables-git
-

@@ -15,4 +15,3 @@ pkgbase = libcs50-git
 	sha256sums = SKIP
 
 pkgname = libcs50-git
-

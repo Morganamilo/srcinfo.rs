@@ -11,4 +11,3 @@ pkgbase = gnome-shell-extension-mmod-panel-git
 	sha256sums = SKIP
 
 pkgname = gnome-shell-extension-mmod-panel-git
-

@@ -26,4 +26,3 @@ pkgbase = etcher
 	sha256sums = 89291532fb6e6c5555b43d61c9ba3df103bca0eace040483884b86fd30dca3e4
 
 pkgname = etcher
-

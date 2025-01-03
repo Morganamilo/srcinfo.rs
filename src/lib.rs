@@ -11,6 +11,7 @@
 
 #![warn(missing_docs)]
 mod error;
+mod fmt;
 mod parse;
 mod srcinfo;
 

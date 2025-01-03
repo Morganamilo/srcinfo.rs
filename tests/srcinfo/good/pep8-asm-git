@@ -13,4 +13,3 @@ pkgbase = pep8-asm-git
 	md5sums = SKIP
 
 pkgname = pep8-asm-git
-

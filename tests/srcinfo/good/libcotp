@@ -16,4 +16,3 @@ pkgbase = libcotp
 	sha256sums = SKIP
 
 pkgname = libcotp
-

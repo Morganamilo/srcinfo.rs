@@ -35,4 +35,3 @@ pkgname = monero
 
 pkgname = libmonero-wallet
 	options = !strip
-

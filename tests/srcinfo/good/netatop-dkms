@@ -17,4 +17,3 @@ pkgbase = netatop-dkms
 	sha256sums = 56e9094e396fcdabadde4db8a9f21945484e4db93359dc22f2fb76436b1b2ea9
 
 pkgname = netatop-dkms
-

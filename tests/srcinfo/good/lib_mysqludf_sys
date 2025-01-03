@@ -9,4 +9,3 @@ pkgbase = lib_mysqludf_sys
 	md5sums = SKIP
 
 pkgname = lib_mysqludf_sys
-

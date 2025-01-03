@@ -17,4 +17,3 @@ pkgbase = ros-indigo-orocos-kdl
 	sha256sums = e2d12a417cb38364fffd22cafe5e8958f5ed8fec61429501a582100860ce1b74
 
 pkgname = ros-indigo-orocos-kdl
-

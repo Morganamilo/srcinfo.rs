@@ -18,4 +18,3 @@ pkgbase = ros-kinetic-smach-msgs
 	sha256sums = 3a5afa934becbcf2be023ea2b7008c61c3baad5b0e8c2242cc8f96567bfd9c1d
 
 pkgname = ros-kinetic-smach-msgs
-

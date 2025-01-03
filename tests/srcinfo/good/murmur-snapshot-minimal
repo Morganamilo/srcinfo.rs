@@ -25,4 +25,3 @@ pkgbase = murmur-snapshot-minimal
 	sha512sums = SKIP
 
 pkgname = murmur-snapshot-minimal
-

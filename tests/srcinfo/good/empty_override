@@ -5,6 +5,7 @@ pkgbase = empty_override
 	depends = a
 	backup = b
 	install = c
+
 pkgname = foo
 	depends = 
 	backup = 

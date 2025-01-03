@@ -14,4 +14,3 @@ pkgbase = lib32-double-conversion
 	sha1sums = 54abeec2090908c7ed229986826e8cce400edd1b
 
 pkgname = lib32-double-conversion
-

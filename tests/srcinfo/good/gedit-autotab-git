@@ -10,4 +10,3 @@ pkgbase = gedit-autotab-git
 	sha256sums = SKIP
 
 pkgname = gedit-autotab-git
-

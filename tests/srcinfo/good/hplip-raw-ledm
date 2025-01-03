@@ -44,4 +44,3 @@ pkgbase = hplip-raw-ledm
 	sha1sums = 89e0ed0ed9acc6e50812c843ffb5f996fffb829e
 
 pkgname = hplip-raw-ledm
-

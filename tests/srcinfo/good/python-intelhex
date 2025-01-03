@@ -16,4 +16,3 @@ pkgname = python-intelhex
 
 pkgname = python2-intelhex
 	depends = python2
-	depends = python2-setuptools

@@ -18,4 +18,3 @@ pkgbase = dolphin-megasync-git
 	sha256sums = d99c53c8a393e2b3896c55ccbffaec55d9ab439c0079485780c9388bf70eac6d
 
 pkgname = dolphin-megasync-git
-

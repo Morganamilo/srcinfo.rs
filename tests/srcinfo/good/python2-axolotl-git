@@ -17,4 +17,3 @@ pkgbase = python2-axolotl-git
 	sha512sums = SKIP
 
 pkgname = python2-axolotl-git
-

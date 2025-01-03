@@ -15,4 +15,3 @@ pkgbase = x86info
 	sha256sums = SKIP
 
 pkgname = x86info
-

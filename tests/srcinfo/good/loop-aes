@@ -16,4 +16,3 @@ pkgbase = loop-aes
 	md5sums = dd465844a650ea4d4856ee26756a0235
 
 pkgname = loop-aes
-

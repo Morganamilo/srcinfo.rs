@@ -55,4 +55,3 @@ pkgbase = caffe-cmake-git
 	md5sums = SKIP
 
 pkgname = caffe-cmake-git
-

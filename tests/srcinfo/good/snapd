@@ -25,4 +25,3 @@ pkgbase = snapd
 	sha256sums = c9ce7f179dbcc7ea43d71bde343473d28fb103502fb09b109bbe1e4db6239574
 
 pkgname = snapd
-

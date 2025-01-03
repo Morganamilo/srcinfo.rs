@@ -25,4 +25,3 @@ pkgbase = mysql-proxy
 	sha256sums = 95170a086c5da94c8b1362fd5cd1ad3c9e75abe950faed362d0bd3710894ac94
 
 pkgname = mysql-proxy
-

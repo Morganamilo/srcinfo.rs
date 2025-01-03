@@ -16,4 +16,3 @@ pkgbase = r8169aspm-dkms
 	sha256sums = 47c992bfbd98403d9aa80b5ed00408af43c57ab0f5960f270d9d9b9f000618b3
 
 pkgname = r8169aspm-dkms
-

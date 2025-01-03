@@ -15,4 +15,3 @@ pkgbase = stest-git
 	sha256sums = SKIP
 
 pkgname = stest-git
-

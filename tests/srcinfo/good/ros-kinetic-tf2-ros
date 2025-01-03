@@ -38,4 +38,3 @@ pkgbase = ros-kinetic-tf2-ros
 	sha256sums = 7b79a58f519a9f9d1eca617f62b7cebadf3e32f565f64b9684383b0506e0bee5
 
 pkgname = ros-kinetic-tf2-ros
-

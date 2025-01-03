@@ -22,4 +22,3 @@ pkgbase = libbonobo
 	sha256sums = 081de245c42de10ebeea3cbcd819c5ce5d0a15b9bdde9c2098302b1e14965af2
 
 pkgname = libbonobo
-

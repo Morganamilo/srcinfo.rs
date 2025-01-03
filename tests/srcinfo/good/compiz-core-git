@@ -58,4 +58,3 @@ pkgname = compiz-gtk-git
 	depends = compiz-core-git
 	provides = compiz-gtk=0.8.14.r3.gd9f455d4
 	conflicts = compiz-gtk
-

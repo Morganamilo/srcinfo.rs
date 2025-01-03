@@ -86,4 +86,3 @@ pkgname = webkitgtk2
 	provides = libwebkit=2.4.11
 	conflicts = libwebkit
 	replaces = libwebkit
-

@@ -14,4 +14,3 @@ pkgbase = dmtx-utils
 	sha256sums = 6fa365cd321609db40800f6b34a2387c0ac56ef4643f6101ac83cb762f5ce9ef
 
 pkgname = dmtx-utils
-

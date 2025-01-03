@@ -15,4 +15,3 @@ pkgbase = gpicker
 	sha512sums = 5baa2db70db1af42febd32c5b008d9c003e9d2546befe780308e815a0f679a8dc984c0cd844adc69d1b9a5515609a372c640d02e8590e594032dbe72a955b8d2
 
 pkgname = gpicker
-

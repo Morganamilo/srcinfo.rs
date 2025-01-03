@@ -37,4 +37,3 @@ pkgbase = lightdm-pantheon-greeter-git
 	sha256sums = aaf0d9ba865bc5c25e463d2bcd2732fb1fa50e3e40a22021fd370f31e258c185
 
 pkgname = lightdm-pantheon-greeter-git
-

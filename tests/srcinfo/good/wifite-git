@@ -24,4 +24,3 @@ pkgbase = wifite-git
 	sha256sums = SKIP
 
 pkgname = wifite-git
-

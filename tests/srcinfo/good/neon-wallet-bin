@@ -10,4 +10,3 @@ pkgbase = neon-wallet-bin
 	sha256sums_x86_64 = 5477c07d9014694efbd987ef8dccc7ffdf9bb4c888993cf7d69b274e6970e215
 
 pkgname = neon-wallet-bin
-

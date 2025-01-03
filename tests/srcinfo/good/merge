@@ -11,9 +11,7 @@ pkgname = 1
 pkgname = 2
 	depends = 
 
-
 pkgname = 3
-	depends_armv7h =
+	depends_armv7h = 
 
 pkgname = 4
-

@@ -17,4 +17,3 @@ pkgbase = perl-datetime-incomplete
 	sha256sums = 086a2442801637abc01e431ef5cdf13b022e7c9b04ab85bba7fc49266fe645c5
 
 pkgname = perl-datetime-incomplete
-

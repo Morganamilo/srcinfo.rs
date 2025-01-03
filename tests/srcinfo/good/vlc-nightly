@@ -185,4 +185,3 @@ pkgbase = vlc-nightly
 	sha256sums = 90b0e34d5772d2307ba07a1c2aa715db7488389003cfe6d3570b2a9c63061db7
 
 pkgname = vlc-nightly
-

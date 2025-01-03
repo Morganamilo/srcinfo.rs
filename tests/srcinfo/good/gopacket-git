@@ -9,4 +9,3 @@ pkgbase = gopacket-git
 	makedepends = git
 
 pkgname = gopacket-git
-

@@ -22,4 +22,3 @@ pkgbase = ros-lunar-camera-info-manager
 	sha256sums = 76bea33eed563058d9e9d3aecdfdcc472a0600fa1ad0c3a4b4b8d3d5eb9a39fa
 
 pkgname = ros-lunar-camera-info-manager
-

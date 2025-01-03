@@ -34,4 +34,3 @@ pkgbase = burp-backup-dev
 	sha256sums = e3e633f09d03efa3f2c1e769a2e31f514466ebd97cf6bb5f1ef0761e17abec67
 
 pkgname = burp-backup-dev
-

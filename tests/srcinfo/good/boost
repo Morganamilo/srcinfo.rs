@@ -74,4 +74,3 @@ pkgname = boost
 	optdepends = python: for python bindings
 	optdepends = python2: for python2 bindings
 	options = staticlibs
-

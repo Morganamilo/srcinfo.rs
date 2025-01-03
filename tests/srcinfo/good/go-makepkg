@@ -14,4 +14,3 @@ pkgbase = go-makepkg
 	md5sums = SKIP
 
 pkgname = go-makepkg
-

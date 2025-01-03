@@ -17,4 +17,3 @@ pkgname = jcdk-classic
 
 pkgname = jcdk-classic-doc
 	pkgdesc = Java Card Classic Development Kit Documentation
-

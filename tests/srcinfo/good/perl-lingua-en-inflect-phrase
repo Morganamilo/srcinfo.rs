@@ -18,4 +18,3 @@ pkgbase = perl-lingua-en-inflect-phrase
 	sha512sums = e56c19981001ab67e159d08c97f1fb44d65e00a165c8b281a3dbe1e837d54bc7506f3494a53f5499b82db667d5307873e8df10cad069857553151937fce804eb
 
 pkgname = perl-lingua-en-inflect-phrase
-

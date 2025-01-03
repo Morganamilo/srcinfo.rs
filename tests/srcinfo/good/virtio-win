@@ -18,4 +18,3 @@ pkgbase = virtio-win
 	sha256sums = 66e75ba07b5e9dff7b8bb05484e7ac5fa9a00471292bb92246757aaf7f410fb6
 
 pkgname = virtio-win
-

@@ -16,4 +16,3 @@ pkgbase = vapoursynth-plugin-degrainmedian-git
 	sha1sums = SKIP
 
 pkgname = vapoursynth-plugin-degrainmedian-git
-

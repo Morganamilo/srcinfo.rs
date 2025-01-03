@@ -17,4 +17,3 @@ pkgbase = libu2f-server
 	sha512sums = 45f66f7a9ecb01d488d59caf3293292e0fbefe6d230c1be686b2e35552eb8a4be82b94dd4aa149d49efb74be66951d2e9b1af235f09ed41cc01ea3a7edba9d68
 
 pkgname = libu2f-server
-

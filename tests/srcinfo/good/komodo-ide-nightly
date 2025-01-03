@@ -23,4 +23,3 @@ pkgbase = komodo-ide-nightly
 	sha256sums_x86_64 = SKIP
 
 pkgname = komodo-ide-nightly
-

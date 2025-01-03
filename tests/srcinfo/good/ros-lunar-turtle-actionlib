@@ -32,4 +32,3 @@ pkgbase = ros-lunar-turtle-actionlib
 	sha256sums = 0a616f9b31841011a0aa1300b9a2982f7f65350092284ec05d67442eb1836230
 
 pkgname = ros-lunar-turtle-actionlib
-

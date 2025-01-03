@@ -17,4 +17,3 @@ pkgbase = ros-indigo-rqt-action
 	sha256sums = 0b8b23b4a8c4394e96232cf5fba028bd5d718fef28721348bc047d2be6954903
 
 pkgname = ros-indigo-rqt-action
-

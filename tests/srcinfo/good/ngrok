@@ -20,4 +20,3 @@ pkgbase = ngrok
 	sha256sums_aarch64 = 744e609bb14c65734fa5bd5501d897ffe1a83f8c615aaafd37bf152d24797249
 
 pkgname = ngrok
-

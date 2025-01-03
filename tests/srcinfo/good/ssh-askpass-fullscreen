@@ -16,4 +16,3 @@ pkgbase = ssh-askpass-fullscreen
 	md5sums = 23a0f7bba208252cfef4e3b8206b31a3
 
 pkgname = ssh-askpass-fullscreen
-
