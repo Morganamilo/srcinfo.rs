@@ -82,7 +82,7 @@ impl ArchVec {
     ///
     /// Returns true if self.arch is none or matches s.
     pub fn supports<S: AsRef<str>>(&self, s: S) -> bool {
-        self.arch.as_deref().map_or(true, |a| a == s.as_ref())
+        self.arch().is_none_or(|a| a == s.as_ref())
     }
 
     #[doc(hidden)]
@@ -283,7 +283,7 @@ impl Srcinfo {
     /// # }
     /// ```
     pub fn names(&self) -> impl Iterator<Item = &str> {
-        self.pkgs.iter().map(|p| p.pkgname.as_str())
+        self.pkgs().iter().map(|p| p.pkgname.as_str())
     }
 
     /// Searches for a package with a given pkgname
@@ -313,7 +313,7 @@ impl Srcinfo {
     /// # }
     /// ```
     pub fn pkg<S: AsRef<str>>(&self, name: S) -> Option<&Package> {
-        self.pkgs.iter().find(|p| p.pkgname == name.as_ref())
+        self.pkgs().iter().find(|p| p.pkgname == name.as_ref())
     }
 
     /// Returns the list of packages in this Srcinfo
