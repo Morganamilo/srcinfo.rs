@@ -3,6 +3,7 @@ use std::io::{BufRead, BufReader};
 use std::path::Path;
 use std::str::FromStr;
 
+use crate::archvec::ArchVecs;
 use crate::error::Error;
 use crate::parse::Parser;
 
@@ -23,109 +24,35 @@ macro_rules! geto {
     };
 }
 
-/// ArchVec represents a Vector of possibly architecture specific fields.
-#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-pub struct ArchVec {
-    /// The architecture of the field, None is equivalent to 'any'
-    pub arch: Option<String>,
-    /// The items the field contains
-    pub vec: Vec<String>,
-}
-
-impl<S: Into<String>> From<S> for ArchVec {
-    fn from(arch: S) -> ArchVec {
-        ArchVec {
-            arch: Some(arch.into()),
-            vec: Vec::new(),
-        }
-    }
-}
-
-impl ArchVec {
-    /// Create a new ArchVec from an optional architecture and a vec
-    pub fn new<S: Into<String>>(arch: Option<S>, vec: Vec<String>) -> ArchVec {
-        let arch = arch.map(|x| x.into());
-        ArchVec { arch, vec }
-    }
-
-    /// Create a new ArchVec from a given architecture and a vec
-    pub fn with_arch<S: Into<String>>(arch: S, vec: Vec<String>) -> ArchVec {
-        Self::new(Some(arch), vec)
-    }
-
-    /// Create a new ArchVec that allows any architecture
-    pub fn any(vec: Vec<String>) -> ArchVec {
-        Self::new(Option::<&str>::None, vec)
-    }
-
-    /// A list of the ArchVec's values
-    pub fn all(&self) -> &[String] {
-        &self.vec
-    }
-
-    /// Returns a list of values that are active under the given architecture
-    pub fn values<S: AsRef<str>>(&self, arch: S) -> &[String] {
-        if self.supports(arch) {
-            self.all()
-        } else {
-            &[]
-        }
-    }
-
-    /// Gets the architecture
-    pub fn arch(&self) -> Option<&str> {
-        self.arch.as_deref()
-    }
-
-    /// Checks if a given ArchVec supports a given architecture.
-    ///
-    /// Returns true if self.arch is none or matches s.
-    pub fn supports<S: AsRef<str>>(&self, s: S) -> bool {
-        self.arch().is_none_or(|a| a == s.as_ref())
-    }
-
-    #[doc(hidden)]
-    pub fn supported<S: AsRef<str>>(v: &[ArchVec], arch: S) -> impl Iterator<Item = &str> {
-        Self::active(v, arch)
-    }
-
-    /// Creates an Iterator out of a slice of ArchVecs yielding only entries that would be included
-    /// under the given architecture.
-    pub fn active<S: AsRef<str>>(v: &[ArchVec], arch: S) -> impl Iterator<Item = &str> {
-        v.iter()
-            .flat_map(move |v| v.values(arch.as_ref()))
-            .map(|s| s.as_str())
-    }
-}
-
 /// The fields from a .SRCINFO that only apply to the pkgbase.
 #[allow(missing_docs)]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub struct PackageBase {
     pub pkgbase: String,
     pub pkgver: String,
     pub pkgrel: String,
     pub epoch: Option<String>,
-    pub source: Vec<ArchVec>,
+    pub source: ArchVecs,
     pub valid_pgp_keys: Vec<String>,
     pub no_extract: Vec<String>,
-    pub md5sums: Vec<ArchVec>,
-    pub sha1sums: Vec<ArchVec>,
-    pub sha224sums: Vec<ArchVec>,
-    pub sha256sums: Vec<ArchVec>,
-    pub sha384sums: Vec<ArchVec>,
-    pub sha512sums: Vec<ArchVec>,
-    pub b2sums: Vec<ArchVec>,
-    pub makedepends: Vec<ArchVec>,
-    pub checkdepends: Vec<ArchVec>,
+    pub md5sums: ArchVecs,
+    pub sha1sums: ArchVecs,
+    pub sha224sums: ArchVecs,
+    pub sha256sums: ArchVecs,
+    pub sha384sums: ArchVecs,
+    pub sha512sums: ArchVecs,
+    pub b2sums: ArchVecs,
+    pub makedepends: ArchVecs,
+    pub checkdepends: ArchVecs,
 }
 
 /// The fields from a .SRCINFO that are unique to each package.
 #[allow(missing_docs)]
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub struct Package {
     pub pkgname: String,
     pub pkgdesc: Option<String>,
@@ -133,11 +60,11 @@ pub struct Package {
     pub url: Option<String>,
     pub license: Vec<String>,
     pub groups: Vec<String>,
-    pub depends: Vec<ArchVec>,
-    pub optdepends: Vec<ArchVec>,
-    pub provides: Vec<ArchVec>,
-    pub conflicts: Vec<ArchVec>,
-    pub replaces: Vec<ArchVec>,
+    pub depends: ArchVecs,
+    pub optdepends: ArchVecs,
+    pub provides: ArchVecs,
+    pub conflicts: ArchVecs,
+    pub replaces: ArchVecs,
     pub backup: Vec<String>,
     pub options: Vec<String>,
     pub install: Option<String>,
@@ -151,11 +78,11 @@ impl Package {
     geto!(url, url, Option<&str>);
     get!(license, license, &[String]);
     get!(groups, groups, &[String]);
-    get!(depends, depends, &[ArchVec]);
-    get!(optdepends, optdepends, &[ArchVec]);
-    get!(provides, provides, &[ArchVec]);
-    get!(conflicts, conflicts, &[ArchVec]);
-    get!(replaces, replaces, &[ArchVec]);
+    get!(depends, depends, &ArchVecs);
+    get!(optdepends, optdepends, &ArchVecs);
+    get!(provides, provides, &ArchVecs);
+    get!(conflicts, conflicts, &ArchVecs);
+    get!(replaces, replaces, &ArchVecs);
     get!(backup, backup, &[String]);
     get!(options, options, &[String]);
     geto!(install, install, Option<&str>);
@@ -165,6 +92,7 @@ impl Package {
 /// A complete representation of a .SRCINFO file.
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+#[non_exhaustive]
 pub struct Srcinfo {
     /// The header comment
     pub comment: String,
@@ -190,7 +118,7 @@ impl Srcinfo {
     ///
     /// ```
     /// // from_str() would be better here.
-    /// // parse_buf() is only used for the sake of example.
+    /// // from_buf() is only used for the sake of example.
     /// # use srcinfo::Error;
     /// use srcinfo::Srcinfo;
     ///
@@ -202,11 +130,11 @@ impl Srcinfo {
     ///
     /// pkgname = example".as_bytes();
     ///
-    /// Srcinfo::parse_buf(buf)?;
+    /// Srcinfo::from_buf(buf)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn parse_buf<T: BufRead>(b: T) -> Result<Srcinfo, Error> {
+    pub fn from_buf<T: BufRead>(b: T) -> Result<Srcinfo, Error> {
         Parser::parse(b)
     }
 
@@ -219,11 +147,11 @@ impl Srcinfo {
     /// # fn test() -> Result<(), Error> {
     /// let file = ".SRCINFO";
     /// # let file = "tests/srcinfo/libc++";
-    /// let srcinfo = Srcinfo::parse_file(file)?;
+    /// let srcinfo = Srcinfo::from_path(file)?;
     /// # Ok(())
     /// # }
     /// ```
-    pub fn parse_file<P: AsRef<Path>>(s: P) -> Result<Srcinfo, Error> {
+    pub fn from_path<P: AsRef<Path>>(s: P) -> Result<Srcinfo, Error> {
         let file = File::open(s)?;
         let buf = BufReader::new(file);
         Parser::parse(buf)
@@ -277,12 +205,12 @@ impl Srcinfo {
     /// pkgname = bar
     /// pkgdesc = 3".parse()?;
     ///
-    /// let mut names = srcinfo.names().collect::<Vec<_>>();
+    /// let mut names = srcinfo.pkgnames().collect::<Vec<_>>();
     /// assert_eq!(names, vec!["example", "foo", "bar"]);
     /// # Ok(())
     /// # }
     /// ```
-    pub fn names(&self) -> impl Iterator<Item = &str> {
+    pub fn pkgnames(&self) -> impl Iterator<Item = &str> {
         self.pkgs().iter().map(|p| p.pkgname.as_str())
     }
 
@@ -321,38 +249,34 @@ impl Srcinfo {
         &self.pkgs
     }
 
-    /// Returns the header comment
-    pub fn comment(&self) -> &str {
-        &self.comment
-    }
-
+    get!(comment, comment, &str);
     get!(pkgbase, base.pkgbase, &str);
     get!(pkgver, base.pkgver, &str);
     get!(pkgrel, base.pkgrel, &str);
     geto!(epoch, base.epoch, Option<&str>);
-    get!(source, base.source, &[ArchVec]);
+    get!(source, base.source, &ArchVecs);
     get!(valid_pgp_keys, base.valid_pgp_keys, &[String]);
     get!(no_extract, base.no_extract, &[String]);
-    get!(md5sums, base.md5sums, &[ArchVec]);
-    get!(sha1sums, base.sha1sums, &[ArchVec]);
-    get!(sha224sums, base.sha224sums, &[ArchVec]);
-    get!(sha256sums, base.sha256sums, &[ArchVec]);
-    get!(sha384sums, base.sha384sums, &[ArchVec]);
-    get!(sha512sums, base.sha512sums, &[ArchVec]);
-    get!(b2sums, base.b2sums, &[ArchVec]);
-    get!(makedepends, base.makedepends, &[ArchVec]);
-    get!(checkdepends, base.checkdepends, &[ArchVec]);
+    get!(md5sums, base.md5sums, &ArchVecs);
+    get!(sha1sums, base.sha1sums, &ArchVecs);
+    get!(sha224sums, base.sha224sums, &ArchVecs);
+    get!(sha256sums, base.sha256sums, &ArchVecs);
+    get!(sha384sums, base.sha384sums, &ArchVecs);
+    get!(sha512sums, base.sha512sums, &ArchVecs);
+    get!(b2sums, base.b2sums, &ArchVecs);
+    get!(makedepends, base.makedepends, &ArchVecs);
+    get!(checkdepends, base.checkdepends, &ArchVecs);
 
     geto!(pkgdesc, pkg.pkgdesc, Option<&str>);
     get!(arch, pkg.arch, &[String]);
     geto!(url, pkg.url, Option<&str>);
     get!(license, pkg.license, &[String]);
     get!(groups, pkg.groups, &[String]);
-    get!(depends, pkg.depends, &[ArchVec]);
-    get!(optdepends, pkg.optdepends, &[ArchVec]);
-    get!(provides, pkg.provides, &[ArchVec]);
-    get!(conflicts, pkg.conflicts, &[ArchVec]);
-    get!(replaces, pkg.replaces, &[ArchVec]);
+    get!(depends, pkg.depends, &ArchVecs);
+    get!(optdepends, pkg.optdepends, &ArchVecs);
+    get!(provides, pkg.provides, &ArchVecs);
+    get!(conflicts, pkg.conflicts, &ArchVecs);
+    get!(replaces, pkg.replaces, &ArchVecs);
     get!(backup, pkg.backup, &[String]);
     get!(options, pkg.options, &[String]);
     geto!(install, pkg.install, Option<&str>);
@@ -362,46 +286,15 @@ impl Srcinfo {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::ErrorKind;
+    use crate::{ArchVec, ErrorKind};
     use std::fs;
-
-    #[test]
-    fn test_supports() {
-        let av = ArchVec::from("x86_64".to_string());
-        assert!(av.supports("x86_64".to_string()));
-
-        let av = ArchVec::default();
-        assert!(av.supports("x86_64"));
-
-        let av = ArchVec::from("i686");
-        assert!(!av.supports("x86_64"));
-
-        let srcinfo: Srcinfo = include_str!("../tests/srcinfo/libc++").parse().unwrap();
-        let depends = srcinfo
-            .base
-            .makedepends
-            .into_iter()
-            .filter(|av| av.supports("x86_64"))
-            .flat_map(|av| av.vec)
-            .collect::<Vec<_>>();
-
-        let expected = vec![
-            "clang".to_string(),
-            "cmake".to_string(),
-            "ninja".to_string(),
-            "python".to_string(),
-            "libunwind".to_string(),
-        ];
-
-        assert_eq!(expected, depends);
-    }
 
     #[test]
     fn test_parsable() {
         let path = fs::read_dir("tests/srcinfo/good").unwrap();
 
         for file in path.map(|x| x.unwrap()) {
-            let srcinfo = Srcinfo::parse_file(file.path());
+            let srcinfo = Srcinfo::from_path(file.path());
             assert!(srcinfo.is_ok(), "{:?} {:?}", file, srcinfo);
         }
     }
@@ -413,7 +306,7 @@ mod tests {
                 pkgrel: "1".to_string(),
                 source: vec![ArchVec {
                     arch: None,
-                    vec: vec![
+                    values: vec![
                         "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz".to_string(),
                         "https://releases.llvm.org/6.0.0/llvm-6.0.0.src.tar.xz.sig".to_string(),
                         "https://releases.llvm.org/6.0.0/libcxx-6.0.0.src.tar.xz".to_string(),
@@ -422,7 +315,7 @@ mod tests {
                         "https://releases.llvm.org/6.0.0/libcxxabi-6.0.0.src.tar.xz.sig"
                             .to_string(),
                     ],
-                }],
+                }].into(),
                 valid_pgp_keys: vec![
                     "11E521D646982372EB577A1F8F0871F202119294".to_string(),
                     "B6C8F98282B944E3B0D5C2530FC3042E345AD05D".to_string(),
@@ -437,7 +330,7 @@ mod tests {
                 ],
                 sha512sums: vec![ArchVec {
                     arch: None,
-                    vec: vec![
+                    values: vec![
                         "a71fdd5ddc46f01327ad891cfcc198febdbe10769c57f14d8a4fb7d514621ee4080e1a641200d3353c16a16731d390270499ec6cd3dc98fadc570f3eb6b52b8c".to_string(),
                         "SKIP".to_string(),
                         "3d93910f85a778f36c5f7a4429639008acba5713a2c8ac79a9de09463af6f9a388af45d39af23423a7223660701697ba067f3391f25d5a970973691dd88635e3".to_string(),
@@ -445,17 +338,17 @@ mod tests {
                         "c5e4cc05105770b42b20595fdbda5e1483be4582bc94335da1a15531ba43a0ecf30e1e0a252f62d4d0e6c79cda9d44ff5fdbe69a0a295b2431fd6de158410e2e".to_string(),
                         "SKIP".to_string(),
                     ]
-                }],
+                }].into(),
                 makedepends: vec![ArchVec {
                     arch: None,
-                    vec: vec![
+                    values: vec![
                         "clang".to_string(),
                         "cmake".to_string(),
                         "ninja".to_string(),
                         "python".to_string(),
                         "libunwind".to_string(),
                     ]
-                }],
+                }].into(),
                 ..Default::default()
             };
 
@@ -468,8 +361,9 @@ mod tests {
             ],
             depends: vec![ArchVec {
                 arch: None,
-                vec: vec!["gcc-libs".to_string()],
-            }],
+                values: vec!["gcc-libs".to_string()],
+            }]
+            .into(),
             ..Default::default()
         };
 
@@ -483,8 +377,9 @@ mod tests {
                     pkgdesc: Some("LLVM C++ standard library.".to_string()),
                     depends: vec![ArchVec {
                         arch: None,
-                        vec: vec!["libc++abi=6.0.0-1".to_string()],
-                    }],
+                        values: vec!["libc++abi=6.0.0-1".to_string()],
+                    }]
+                    .into(),
                     ..package.clone()
                 },
                 Package {
@@ -499,8 +394,9 @@ mod tests {
                     pkgdesc: Some("LLVM C++ experimental library.".to_string()),
                     depends: vec![ArchVec {
                         arch: None,
-                        vec: vec!["libc++=6.0.0-1".to_string()],
-                    }],
+                        values: vec!["libc++=6.0.0-1".to_string()],
+                    }]
+                    .into(),
                     ..package.clone()
                 },
             ],
@@ -531,13 +427,13 @@ mod tests {
     #[test]
     fn libcpp_buf() {
         let srcinfo =
-            Srcinfo::parse_buf(include_str!("../tests/srcinfo/libc++").as_bytes()).unwrap();
+            Srcinfo::from_buf(include_str!("../tests/srcinfo/libc++").as_bytes()).unwrap();
         assert_eq_libcpp(&srcinfo);
     }
 
     #[test]
     fn libcpp_file() {
-        let srcinfo = Srcinfo::parse_file("tests/srcinfo/libc++").unwrap();
+        let srcinfo = Srcinfo::from_path("tests/srcinfo/libc++").unwrap();
         assert_eq_libcpp(&srcinfo);
     }
 
@@ -550,31 +446,31 @@ mod tests {
             source: vec![
                 ArchVec {
                     arch: Some("i686".to_string()),
-                    vec: vec![
+                    values: vec![
                         "http://gdcproject.org/downloads/binaries/6.3.0/i686-linux-gnu/gdc-6.3.0+2.068.2.tar.xz".to_string(),
                     ],
                 },
                 ArchVec {
                     arch: Some("x86_64".to_string()),
-                    vec: vec![
+                    values: vec![
                         "http://gdcproject.org/downloads/binaries/6.3.0/x86_64-linux-gnu/gdc-6.3.0+2.068.2.tar.xz".to_string(),
                     ]
                 }
-            ],
+            ].into(),
             md5sums: vec![
                 ArchVec {
                     arch: Some("i686".to_string()),
-                    vec: vec![
+                    values: vec![
                         "cc8dcd66b189245e39296b1382d0dfcc".to_string(),
                     ],
                 },
                 ArchVec {
                     arch: Some("x86_64".to_string()),
-                    vec: vec![
+                    values: vec![
                         "16d3067ebb3938dba46429a4d9f6178f".to_string(),
                     ]
                 }
-            ],
+            ].into(),
 
             ..Default::default()
         };
@@ -596,23 +492,23 @@ mod tests {
                     depends: vec![
                         ArchVec {
                             arch: None,
-                            vec: vec![
+                            values: vec![
                                 "gdc-gcc".to_string(),
                                 "perl".to_string(),
                                 "binutils".to_string(),
                                 "libgphobos".to_string(),
                             ]
                         }
-                    ],
+                    ].into(),
                     provides: vec![
                         ArchVec {
                             arch: None,
-                            vec: vec![
+                            values: vec![
                                 "d-compiler=2.068.2".to_string(),
                                 "gdc=6.3.0+2.068.2".to_string(),
                             ]
                         }
-                    ],
+                    ].into(),
 
                     ..package.clone()
                 },
@@ -622,12 +518,12 @@ mod tests {
                     provides: vec![
                         ArchVec {
                             arch: None,
-                            vec: vec![
+                            values: vec![
                                 "gcc=6.3.0".to_string(),
                                 "gcc-libs=6.3.0".to_string(),
                             ]
                         }
-                    ],
+                    ].into(),
                     ..package.clone()
                 },
                 Package {
@@ -636,12 +532,12 @@ mod tests {
                     provides: vec![
                         ArchVec {
                             arch: None,
-                            vec: vec![
+                            values: vec![
                                 "d-runtime-lib32".to_string(),
                                 "d-stdlib-lib32".to_string(),
                             ]
                         }
-                    ],
+                    ].into(),
                     ..package.clone()
                 },
 
@@ -863,7 +759,7 @@ mod tests {
 
     #[test]
     fn error_io_error() {
-        let err = Srcinfo::parse_file("").unwrap_err();
+        let err = Srcinfo::from_path("").unwrap_err();
         assert_eq!(err.line, None);
 
         match err.kind {
@@ -913,60 +809,5 @@ mod tests {
             .unwrap();
 
         assert_eq!(srcinfo.comment(), "123\nabc");
-    }
-
-    #[test]
-    fn arch_vecs() {
-        let field = vec![
-            ArchVec::with_arch("a", vec!["1".to_string()]),
-            ArchVec::with_arch("b", vec!["2".to_string()]),
-            ArchVec::with_arch("c", vec!["3".to_string()]),
-            ArchVec::any(vec!["4".to_string()]),
-        ];
-
-        assert_eq!(
-            ArchVec::supported(&field, "b",).next().unwrap(),
-            "2".to_string()
-        );
-    }
-
-    #[test]
-    fn arch_vecs2() {
-        let a = vec![
-            ArchVec::with_arch("a", vec!["1".to_string()]),
-            ArchVec::with_arch("b", vec!["2".to_string()]),
-            ArchVec::with_arch("c", vec!["3".to_string()]),
-            ArchVec::any(vec!["4".to_string()]),
-        ];
-        let b = vec![
-            ArchVec::with_arch("a", vec!["1".to_string()]),
-            ArchVec::with_arch("b", vec!["2".to_string()]),
-            ArchVec::with_arch("c", vec!["3".to_string()]),
-            ArchVec::any(vec!["4".to_string()]),
-        ];
-        let c = vec![
-            ArchVec::with_arch("a", vec!["1".to_string()]),
-            ArchVec::with_arch("b", vec!["2".to_string()]),
-            ArchVec::with_arch("c", vec!["3".to_string()]),
-            ArchVec::any(vec!["4".to_string()]),
-        ];
-
-        let vals = a
-            .iter()
-            .chain(&b)
-            .chain(&c)
-            .flat_map(|v| v.values("c"))
-            .collect::<Vec<_>>();
-        assert_eq!(
-            vals,
-            vec![
-                &"3".to_string(),
-                &"4".to_string(),
-                &"3".to_string(),
-                &"4".to_string(),
-                &"3".to_string(),
-                &"4".to_string(),
-            ]
-        );
     }
 }

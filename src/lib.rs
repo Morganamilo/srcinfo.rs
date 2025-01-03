@@ -27,8 +27,8 @@
 //! pkgname = example".parse()?;
 //!
 //! // Or a file
-//! # let srcinfo = Srcinfo::parse_file("tests/srcinfo/libc++")?;
-//! let srcinfo = Srcinfo::parse_file(".SRCINFO")?;
+//! # let srcinfo = Srcinfo::from_path("tests/srcinfo/libc++")?;
+//! let srcinfo = Srcinfo::from_path(".SRCINFO")?;
 //!
 //! // Reading global fields
 //! // These fields were declared at the top of the PKGBUILD but may be overridden per package
@@ -46,7 +46,7 @@
 //!
 //! // reading makedepends and makedepends_$ARCH fields
 //! for depends_arch in srcinfo.makedepends() {
-//!     for depend in depends_arch.all() {
+//!     for depend in depends_arch {
 //!         match depends_arch.arch() {
 //!             Some(arch) => println!("depend_{}: {}", arch, depend),
 //!             None => println!("depend: {}", depend),
@@ -70,7 +70,7 @@
 //!
 //! // Get the depends of an x86_64 system
 //! // This includes the `depends` and `depends_x86_64` fields
-//! for depend in ArchVec::active(pkg.depends(), "x86_64") {
+//! for depend in pkg.depends().arch("x86_64") {
 //!     println!("depend: {}", depend);
 //! }
 //!
@@ -83,10 +83,12 @@
 //! ```
 
 #![warn(missing_docs)]
+mod archvec;
 mod error;
 mod fmt;
 mod parse;
 mod srcinfo;
 
+pub use crate::archvec::*;
 pub use crate::error::*;
 pub use crate::srcinfo::*;

@@ -1,7 +1,9 @@
 use std::io::BufRead;
 
+use crate::archvec::ArchVecs;
 use crate::error::{Error, ErrorKind};
-use crate::srcinfo::{ArchVec, Package, Srcinfo};
+use crate::srcinfo::{Package, Srcinfo};
+use crate::ArchVec;
 
 macro_rules! merge {
     ($slf:ident, $base:ident, $field:ident) => {
@@ -24,14 +26,14 @@ macro_rules! merge_vec {
 macro_rules! merge_arch_string {
     ($slf:ident, $base:ident, $field:ident) => {
         for arch_string in &$slf.srcinfo.pkg.$field {
-            if !has_override(
-                &$slf.empty_overrides,
-                stringify!($field),
-                arch_string.arch.as_deref(),
-            ) {
-                if !$base.$field.iter().any(|a| a.arch == arch_string.arch) {
-                    $base.$field.push(arch_string.clone());
-                }
+            if $base.$field.get(arch_string.arch()).is_none()
+                && !has_override(
+                    &$slf.empty_overrides,
+                    stringify!($field),
+                    arch_string.arch(),
+                )
+            {
+                $base.$field.vecs.push(arch_string.clone());
             }
         }
     };
@@ -40,8 +42,8 @@ macro_rules! merge_arch_string {
 // Splits a "key = pair"
 fn split_pair(s: &str) -> Result<(&str, Option<&str>), ErrorKind> {
     let split = s.split_once('=');
-    let split = split.ok_or_else(|| ErrorKind::EmptyValue(s.to_string()))?;
-    let (key, value) = (split.0.trim(), split.1.trim());
+    let (key, value) = split.ok_or_else(|| ErrorKind::EmptyValue(s.to_string()))?;
+    let (key, value) = (key.trim(), value.trim());
     if key.is_empty() {
         return Err(ErrorKind::EmptyKey);
     }
@@ -60,11 +62,14 @@ fn empty_to_none(s: &str) -> Option<&str> {
     (!s.is_empty()).then_some(s)
 }
 
-fn append_arch_strings(arch_strings: &mut Vec<ArchVec>, arch: Option<&str>, value: &str) {
-    if let Some(vec) = arch_strings.iter_mut().find(|a| arch == a.arch.as_deref()) {
-        vec.vec.push(value.to_string());
+fn append_arch_strings(vecs: &mut ArchVecs, arch: Option<&str>, value: &str) {
+    if let Some(vec) = vecs.vecs.iter_mut().find(|v| v.arch() == arch) {
+        vec.values.push(value.to_string());
     } else {
-        arch_strings.push(ArchVec::new(arch, vec![value.to_string()]));
+        vecs.vecs.push(ArchVec {
+            arch: arch.map(str::to_string),
+            values: vec![value.to_string()],
+        });
     }
 }
 
@@ -343,6 +348,7 @@ impl Parser {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::ArchVec;
 
     #[test]
     fn test_split_pair() {
@@ -374,26 +380,26 @@ mod tests {
 
     #[test]
     fn test_append_arch_strings() {
-        let mut arch_strings = vec![ArchVec::from("x86_64")];
+        let mut arch_strings = ArchVecs::from(vec![ArchVec::from("x86_64")]);
         append_arch_strings(&mut arch_strings, Some("arm"), "foo");
 
         assert_eq!(
             arch_strings,
-            vec![
+            ArchVecs::from(vec![
                 ArchVec::from("x86_64"),
                 ArchVec::new(Some("arm"), vec!["foo".to_string()]),
-            ]
+            ])
         );
 
-        let mut arch_strings = vec![ArchVec::from("x86_64")];
+        let mut arch_strings = ArchVecs::from(vec![ArchVec::from("x86_64")]);
         append_arch_strings(&mut arch_strings, Some("x86_64"), "foo");
 
         assert_eq!(
             arch_strings,
-            vec![ArchVec::new(Some("x86_64"), vec!["foo".to_string()]),]
+            ArchVecs::from(vec![ArchVec::new(Some("x86_64"), vec!["foo".to_string()])])
         );
 
-        let mut arch_strings = vec![ArchVec::from("x86_64")];
+        let mut arch_strings = ArchVecs::from(vec![ArchVec::from("x86_64")]);
         append_arch_strings(&mut arch_strings, Some("x86_64"), "foo");
         append_arch_strings(&mut arch_strings, Some("x86_64"), "bar");
         append_arch_strings(&mut arch_strings, Some("x86_64"), "a");
@@ -401,7 +407,7 @@ mod tests {
 
         assert_eq!(
             arch_strings,
-            vec![ArchVec::new(
+            ArchVecs::from(vec![ArchVec::new(
                 Some("x86_64"),
                 vec![
                     "foo".to_string(),
@@ -409,10 +415,10 @@ mod tests {
                     "a".to_string(),
                     "b".to_string()
                 ]
-            ),]
+            )])
         );
 
-        let mut arch_strings = vec![ArchVec::from("x86_64")];
+        let mut arch_strings = ArchVecs::from(vec![ArchVec::from("x86_64")]);
         append_arch_strings(&mut arch_strings, Some("x86_64"), "foo");
         append_arch_strings(&mut arch_strings, Some("arm"), "bar");
         append_arch_strings(&mut arch_strings, Some("x86_64"), "a");
@@ -420,10 +426,10 @@ mod tests {
 
         assert_eq!(
             arch_strings,
-            vec![
+            ArchVecs::from(vec![
                 ArchVec::new(Some("x86_64"), vec!["foo".to_string(), "a".to_string()]),
                 ArchVec::new(Some("arm"), vec!["bar".to_string(), "b".to_string()]),
-            ]
+            ])
         );
     }
 }

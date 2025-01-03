@@ -38,7 +38,7 @@ for arch in srcinfo.arch() {
 
 // reading makedepends and makedepends_$ARCH fields
 for depends_arch in srcinfo.makedepends() {
-    for depend in depends_arch.all() {
+    for depend in depends_arch {
         match depends_arch.arch() {
             Some(arch) => println!("depend_{}: {}", arch, depend),
             None => println!("depend: {}", depend),
@@ -62,7 +62,7 @@ for arch in pkg.arch() {
 
 // Get the depends of an x86_64 system
 // This includes the `depends` and `depends_x86_64` fields
-for depend in ArchVec::active(pkg.depends(), "x86_64") {
+for depend in pkg.depends().arch("x86_64") {
     println!("depend: {}", depend);
 }
 

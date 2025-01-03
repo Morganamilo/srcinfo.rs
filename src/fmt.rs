@@ -1,6 +1,6 @@
 use std::fmt::{Display, Formatter, Result as FmtResult};
 
-use crate::{ArchVec, Package, Srcinfo};
+use crate::{ArchVec, ArchVecs, Package, Srcinfo};
 
 fn write_val_arch(w: &mut Formatter<'_>, key: &str, arch: Option<&str>, value: &str) -> FmtResult {
     match arch {
@@ -14,13 +14,13 @@ fn write_val(w: &mut Formatter<'_>, key: &str, value: &str) -> FmtResult {
 }
 
 fn write_arch_vec(w: &mut Formatter<'_>, key: &str, values: &ArchVec) -> FmtResult {
-    for value in values.all() {
+    for value in values {
         write_val_arch(w, key, values.arch(), value)?;
     }
     Ok(())
 }
 
-fn write_arch_vecs(w: &mut Formatter<'_>, key: &str, values: &[ArchVec]) -> FmtResult {
+fn write_arch_vecs(w: &mut Formatter<'_>, key: &str, values: &ArchVecs) -> FmtResult {
     for vec in values {
         write_arch_vec(w, key, vec)?;
     }
@@ -56,19 +56,19 @@ fn write_pkg_arr(w: &mut Formatter<'_>, k: &str, v: &[String], base: &[String]) 
 fn write_pkg_arch_vecs(
     w: &mut Formatter<'_>,
     key: &str,
-    values: &[ArchVec],
-    base: &[ArchVec],
+    values: &ArchVecs,
+    base: &ArchVecs,
 ) -> FmtResult {
     for value in values {
-        match base.iter().find(|v| value.arch() == v.arch()) {
+        match base.get(value.arch()) {
             Some(base) if base != value => write_arch_vec(w, key, value)?,
-            None if !value.vec.is_empty() => write_arch_vec(w, key, value)?,
+            None => write_arch_vec(w, key, value)?,
             _ => (),
         }
     }
 
     for base in base {
-        if !base.vec.is_empty() && !values.iter().any(|v| base.arch() == v.arch()) {
+        if values.get(base.arch()).is_none() {
             write_val_arch(w, key, base.arch(), "")?;
         }
     }
