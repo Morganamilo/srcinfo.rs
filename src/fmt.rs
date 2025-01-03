@@ -163,12 +163,9 @@ mod tests {
 
             let original = read_to_string(file.path()).unwrap();
             let srcinfo = original.parse::<Srcinfo>().unwrap();
-
-            let mut original = original
-                .lines()
-                .filter(|l| !l.starts_with("#"))
-                .collect::<Vec<_>>();
             let srcinfo = srcinfo.to_string();
+
+            let mut original = original.lines().collect::<Vec<_>>();
             let mut srcinfo = srcinfo.lines().collect::<Vec<_>>();
 
             original.sort();
