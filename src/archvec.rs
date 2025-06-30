@@ -3,6 +3,15 @@ use std::ops::Deref;
 #[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 /// ArchVecs represents a Vector of possibly architecture specific fields and their values.
+///
+/// ArchVecs holds a list of architectures and associated values. Earch architecture holds one to
+/// many values. The same values may appear across different architectures. An architectures of None
+/// indicates that the value applies to all architectures.
+///
+/// When working with ArchVecs you generally want to take the values relevant to you.
+/// This is simply the list of values belonging to your set architecture plus
+/// the values with a None architecture. [`ArchVecs::arch`] provides this
+/// functionality.
 pub struct ArchVecs {
     /// A vector of each architecture and their values
     pub vecs: Vec<ArchVec>,
@@ -46,7 +55,7 @@ impl ArchVecs {
 
     /// Gets the list of values that apply to the given architecture
     ///
-    /// The architecture must either equal the given architecture or be None
+    /// The returned values with either belong to the given architecture or the None architecture.
     pub fn arch<S: AsRef<str>>(&self, arch: S) -> impl Iterator<Item = &str> {
         self.vecs
             .iter()
@@ -94,6 +103,18 @@ impl From<String> for ArchVec {
 impl From<&str> for ArchVec {
     fn from(value: &str) -> Self {
         ArchVec::new(Some(value), Vec::new())
+    }
+}
+
+impl From<Option<String>> for ArchVec {
+    fn from(value: Option<String>) -> Self {
+        ArchVec::new(value, Vec::new())
+    }
+}
+
+impl From<Option<&str>> for ArchVec {
+    fn from(value: Option<&str>) -> Self {
+        ArchVec::new(value, Vec::new())
     }
 }
 
