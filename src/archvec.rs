@@ -62,6 +62,14 @@ impl ArchVecs {
             .filter(move |v| v.supports(arch.as_ref()))
             .flatten()
     }
+
+    /// Returns an iterator over all values in this ArchVecs
+    ///
+    /// You usually don't want this function as it means architecture specific fields are not being
+    /// handled.
+    pub fn all(&self) -> impl Iterator<Item = &str> {
+        self.vecs.iter().flatten()
+    }
 }
 
 /// ArchVec represents a possibly architecture specific field and its values.
