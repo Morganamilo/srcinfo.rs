@@ -14,7 +14,7 @@ use std::ops::Deref;
 /// functionality.
 pub struct ArchVecs {
     /// A vector of each architecture and their values
-    pub vecs: Vec<ArchVec>,
+    pub(crate) vecs: Vec<ArchVec>,
 }
 
 impl Deref for ArchVecs {
@@ -69,9 +69,9 @@ impl ArchVecs {
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 pub struct ArchVec {
     /// The architecture of the field, None is equivalent to 'any'
-    pub arch: Option<String>,
+    pub(crate) arch: Option<String>,
     /// The values the field contains
-    pub values: Vec<String>,
+    pub(crate) values: Vec<String>,
 }
 
 /// Iterator over ArchVec values
@@ -96,33 +96,42 @@ impl<'a> IntoIterator for &'a ArchVec {
 
 impl From<String> for ArchVec {
     fn from(value: String) -> Self {
-        ArchVec::new(Some(value), Vec::new())
+        ArchVec::new(Some(value))
     }
 }
 
 impl From<&str> for ArchVec {
     fn from(value: &str) -> Self {
-        ArchVec::new(Some(value), Vec::new())
+        ArchVec::new(Some(value))
     }
 }
 
 impl From<Option<String>> for ArchVec {
     fn from(value: Option<String>) -> Self {
-        ArchVec::new(value, Vec::new())
+        ArchVec::new(value)
     }
 }
 
 impl From<Option<&str>> for ArchVec {
     fn from(value: Option<&str>) -> Self {
-        ArchVec::new(value, Vec::new())
+        ArchVec::new(value)
     }
 }
 
 impl ArchVec {
-    /// Creates a new ArchVec
-    pub fn new<S: Into<String>>(arch: Option<S>, vec: Vec<String>) -> ArchVec {
+    /// Creates a new ArchVec with the given architecture
+    pub fn new<S: Into<String>>(arch: Option<S>) -> ArchVec {
         let arch = arch.map(|x| x.into());
-        ArchVec { arch, values: vec }
+        ArchVec {
+            arch,
+            values: Vec::new(),
+        }
+    }
+
+    /// Creates a new ArchVec with the given architecture and values
+    pub fn with_values<S: Into<String>>(arch: Option<S>, values: Vec<String>) -> ArchVec {
+        let arch = arch.map(|x| x.into());
+        ArchVec { arch, values }
     }
 
     /// An iterator over the values in this ArchVec
