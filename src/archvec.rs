@@ -157,9 +157,10 @@ impl ArchVec {
         self.arch.as_deref()
     }
 
-    /// Checks if a given ArchVec supports a given architecture.
+    /// Checks if a given ArchVec is supported by a given architecture
     ///
-    /// Returns true if self.arch is none or matches s.
+    /// An ArchVec supports an architecture if the architecture is the same as the ArchVec's or
+    /// the ArchVec does not have an architecture.
     pub fn supports<S: AsRef<str>>(&self, s: S) -> bool {
         self.arch().is_none_or(|a| a == s.as_ref())
     }

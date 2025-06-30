@@ -1,9 +1,9 @@
 use std::io::BufRead;
 
+use crate::ArchVec;
 use crate::archvec::ArchVecs;
 use crate::error::{Error, ErrorKind};
 use crate::srcinfo::{Package, Srcinfo};
-use crate::ArchVec;
 
 macro_rules! merge {
     ($slf:ident, $base:ident, $field:ident) => {
