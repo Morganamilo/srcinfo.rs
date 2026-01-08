@@ -47,6 +47,13 @@ impl ArchVecs {
     }
 
     /// Gets the list of values that have the specified architecture
+    pub fn get_any(&self) -> Option<&ArchVec> {
+        self.vecs
+            .iter()
+            .find(|v| v.arch() == None)
+    }
+
+    /// Gets the list of values that have the specified architecture
     pub fn get<S: AsRef<str>>(&self, arch: Option<S>) -> Option<&ArchVec> {
         self.vecs
             .iter()
@@ -70,6 +77,13 @@ impl ArchVecs {
     pub fn all(&self) -> impl Iterator<Item = &str> {
         self.vecs.iter().flatten()
     }
+
+    /// Gets the list of values that have no specific architecture
+    pub fn any(&self) -> impl Iterator<Item = &str> {
+        self.get_any()
+            .map(|v| v.iter())
+            .unwrap_or_default()
+    }
 }
 
 /// ArchVec represents a possibly architecture specific field and its values.
@@ -82,7 +96,15 @@ pub struct ArchVec {
     pub(crate) values: Vec<String>,
 }
 
+impl Default for &ArchVec {
+    fn default() -> Self {
+        static EMPTY: ArchVec = ArchVec { arch: None, values: Vec::new() };
+        &EMPTY
+    }
+}
+
 /// Iterator over ArchVec values
+#[derive(Clone, Debug, Default)]
 pub struct ArchVecIter<'a>(std::slice::Iter<'a, String>);
 
 impl<'a> Iterator for ArchVecIter<'a> {
@@ -143,7 +165,7 @@ impl ArchVec {
     }
 
     /// An iterator over the values in this ArchVec
-    pub fn iter(&self) -> ArchVecIter {
+    pub fn iter(&self) -> ArchVecIter<'_> {
         self.into_iter()
     }
 
